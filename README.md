@@ -1,1 +1,1 @@
-# Simple website for sharing usefull tools and evidence-based content.
+# Simple website for sharing useful tools and evidence-based content.
