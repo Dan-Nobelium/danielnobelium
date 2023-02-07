@@ -244,6 +244,16 @@ p a {
   color: #648880;
 }
 
+.btn-alt-two {
+  border: 1px solid #648880;
+  color: #293f50;
+  padding: 10px 30px;
+}
+.btn-alt-two:hover {
+  background: #648880;
+  color: #293f50;
+}
+
 /*
   ========================================
   Primary header
