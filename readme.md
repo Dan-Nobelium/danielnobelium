@@ -1,6 +1,6 @@
 # Project Title
 
-danielnobelium- A professional website
+danielnobelium- A pure HTML CSS website hosted on GitHub pages
 
 ## Description
 
