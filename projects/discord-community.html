@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Discord Community - Daniel Nobelium</title>
+    <link rel="stylesheet" href="../assets/stylesheets/main.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,300,400">
+    <link rel="stylesheet" href="../assets/stylesheets/project-detail.css">
+  </head>
+
+  <body>
+    <!-- Header -->
+    <header class="primary-header container group">
+      <h1 class="logo">
+        <a href="../index.html">Daniel<br> Nobelium</a>
+      </h1>
+
+      <h3 class="tagline">Software Engineer</h3>
+
+      <nav class="nav primary-nav">
+        <a href="../index.html">Home</a>
+        <a href="../education.html">Education</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../reviews.html">Reviews</a>
+        <a href="../contact.html">Contact</a>
+      </nav>
+    </header>
+
+    <!-- Project Content -->
+    <section class="row">
+      <div class="container">
+        <!-- Breadcrumbs -->
+        <div class="breadcrumbs">
+          <a href="../index.html">Home</a> > 
+          <a href="../projects.html">Projects</a> > 
+          Discord Community
+        </div>
+
+        <!-- Project Header -->
+        <div class="project-header">
+          <h1>Discord Community Management</h1>
+          <div class="project-meta">
+            <span class="date">2022-2023</span>
+            <span class="role">Community Manager & Developer</span>
+          </div>
+          <div class="tech-stack">
+            <span class="tech-badge">Discord.js</span>
+            <span class="tech-badge">Node.js</span>
+            <span class="tech-badge">Community Management</span>
+            <span class="tech-badge">Bot Development</span>
+          </div>
+        </div>
+
+        <!-- Project Navigation -->
+        <nav class="project-nav">
+          <a href="#overview">Overview</a>
+          <a href="#challenge">Challenge</a>
+          <a href="#approach">Approach</a>
+          <a href="#code">Code Samples</a>
+          <a href="#demo">Demo</a>
+          <a href="#outcomes">Outcomes</a>
+        </nav>
+
+        <!-- Overview Section -->
+        <div id="overview" class="project-section">
+          <h2>Overview</h2>
+          <p>
+            Built and managed a thriving Discord community with over 600 active members focused on technology and programming discussions. The community serves as a hub for knowledge sharing, networking, and collaborative learning.
+          </p>
+          <p>
+            As both the community manager and technical lead, I developed custom Discord bots to enhance user engagement, automate moderation tasks, and create interactive experiences for community members.
+          </p>
+        </div>
+
+        <!-- Challenge Section -->
+        <div id="challenge" class="project-section">
+          <h2>Challenge</h2>
+          <p>
+            Managing a large online community presents several challenges:
+          </p>
+          <ul>
+            <li>Maintaining active engagement among members</li>
+            <li>Ensuring a positive, inclusive environment</li>
+            <li>Automating routine moderation tasks</li>
+            <li>Creating scalable systems as the community grows</li>
+            <li>Developing custom functionality not provided by Discord</li>
+          </ul>
+        </div>
+
+        <!-- Approach Section -->
+        <div id="approach" class="project-section">
+          <h2>Approach</h2>
+          <p>
+            My approach combined community management strategies with technical solutions:
+          </p>
+          <ol>
+            <li>Designed a welcoming onboarding process with automated role assignment</li>
+            <li>Developed a custom moderation bot to enforce community guidelines</li>
+            <li>Created interactive event systems for community challenges and activities</li>
+            <li>Implemented analytics tracking to measure engagement and growth</li>
+            <li>Established a tiered role system to recognize active contributors</li>
+          </ol>
+        </div>
+
+        <!-- Code Samples Section -->
+        <div id="code" class="project-section">
+          <h2>Code Samples</h2>
+          
+          <h3>Event Handler for New Members</h3>
+          <div class="code-block">
+            <pre><code class="language-javascript">
+// Event handler for new members joining the server
+client.on('guildMemberAdd', async member => {
+  try {
+    // Send welcome message
+    const welcomeChannel = member.guild.channels.cache.find(
+      channel => channel.name === 'welcome'
+    );
+    
+    if (welcomeChannel) {
+      await welcomeChannel.send(
+        `Welcome to the community, ${member}! Please check out #rules and #get-started.`
+      );
+    }
+    
+    // Assign default role
+    const newMemberRole = member.guild.roles.cache.find(
+      role => role.name === 'New Member'
+    );
+    
+    if (newMemberRole) {
+      await member.roles.add(newMemberRole);
+      console.log(`Assigned New Member role to ${member.user.tag}`);
+    }
+    
+    // Log the new member
+    const logsChannel = member.guild.channels.cache.find(
+      channel => channel.name === 'member-logs'
+    );
+    
+    if (logsChannel) {
+      await logsChannel.send(
+        `New member joined: ${member.user.tag} (${member.id})`
+      );
+    }
+  } catch (error) {
+    console.error('Error handling new member:', error);
+  }
+});
+            </code></pre>
+          </div>
+          
+          <h3>Activity Tracking System</h3>
+          <div class="code-block">
+            <pre><code class="language-javascript">
+// Activity tracking for user engagement
+client.on('message', async message => {
+  // Ignore bot messages and DMs
+  if (message.author.bot || !message.guild) return;
+  
+  // Get or create user data in database
+  let userData = await UserModel.findOne({ userId: message.author.id });
+  
+  if (!userData) {
+    userData = new UserModel({
+      userId: message.author.id,
+      username: message.author.tag,
+      messageCount: 0,
+      lastActive: new Date(),
+      activityPoints: 0
+    });
+  }
+  
+  // Update activity metrics
+  userData.messageCount += 1;
+  userData.lastActive = new Date();
+  userData.activityPoints += 1;
+  
+  // Check for role upgrades based on activity
+  if (userData.activityPoints >= 500 && !message.member.roles.cache.some(r => r.name === "Active Contributor")) {
+    const contributorRole = message.guild.roles.cache.find(r => r.name === "Active Contributor");
+    if (contributorRole) {
+      await message.member.roles.add(contributorRole);
+      message.channel.send(`Congratulations ${message.author}! You've been promoted to Active Contributor.`);
+    }
+  }
+  
+  // Save updated user data
+  await userData.save();
+});
+            </code></pre>
+          </div>
+        </div>
+
+        <!-- Demo Section -->
+        <div id="demo" class="project-section">
+          <h2>Demo</h2>
+          <p>
+            Below is a short demonstration of the community bot in action, showing the onboarding process and some key features:
+          </p>
+          
+          <div class="video-container">
+            <!-- Replace with your actual video -->
+            <video controls poster="../assets/img/discord-video-poster.jpg">
+              <source src="../assets/videos/discord-demo.mp4" type="video/mp4">
+              Your browser doesn't support HTML5 video.
+            </video>
+          </div>
+        </div>
+
+        <!-- Outcomes Section -->
+        <div id="outcomes" class="project-section">
+          <h2>Outcomes</h2>
+          
+          <h3>Growth Metrics</h3>
+          <ul>
+            <li>Grew membership from 50 to 600+ members over 12 months</li>
+            <li>Achieved 70% member retention rate (industry average: 40-45%)</li>
+            <li>Maintained average daily active users of 120+</li>
+            <li>Generated 200+ daily messages during peak activity</li>
+          </ul>
+          
+          <h3>Testimonial</h3>
+          <blockquote>
+            "This community has been instrumental in my learning journey. The bots make everything so smooth, and the atmosphere is incredibly welcoming and supportive."
+            <footer>— John D., Community Member</footer>
+          </blockquote>
+        </div>
+
+        <!-- Project Navigation -->
+        <div class="project-navigation">
+          <a href="../projects.html">&larr; Back to Projects</a>
+          <a href="une-database.html">Next Project: UNE Database &rarr;</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top">↑</a>
+
+    <!-- Footer -->
+    <footer class="primary-footer container group">
+      <small>&copy; Daniel Nobelium 2023-2025 </small>
+
+      <nav class="nav">
+        <a href="../index.html">Home</a>
+        <a href="../education.html">Education</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../reviews.html">Reviews</a>
+        <a href="../contact.html">Contact</a>
+      </nav>
+      
+      <div class="social-links">
+        <a href="https://github.com/Dan-Nobelium" target="_blank">GitHub</a>
+        <a href="https://linkedin.com/in/danielnobelium" target="_blank">LinkedIn</a>
+      </div>
+    </footer>
+    
+    <script>
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          
+          document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+          });
+        });
+      });
+      
+      // Show/hide back to top button
+      window.addEventListener('scroll', function() {
+        const backToTopButton = document.querySelector('.back-to-top');
+        if (window.pageYOffset > 300) {
+          backToTopButton.style.display = 'flex';
+        } else {
+          backToTopButton.style.display = 'none';
+        }
+      });
+    </script>
+  </body>
+</html>
