@@ -34,14 +34,24 @@ danielnobelium/
 │   ├── img/                 # Images and graphics
 │   │   ├── UNElogo.png
 │   │   ├── UNSW_logo_white.png
-│   │   └── genArtOne.gif
+│   │   ├── genArtOne.gif
+│   │   ├── discord-preview.jpg
+│   │   ├── database-preview.jpg
+│   │   └── jspsych-preview.jpg
+│   ├── videos/              # Project demo videos
+│   │   └── project videos
 │   └── stylesheets/
-│       └── main.css         # Main stylesheet
+│       ├── main.css         # Main stylesheet
+│       ├── projects.css     # Projects grid styling
+│       └── project-detail.css # Individual project page styling
+├── projects/                # Detailed project pages
+│   ├── discord-community.html
+│   ├── une-database.html
+│   └── unsw-jspsych.html
 ├── index.html               # Homepage
 ├── contact.html             # Contact information
 ├── education.html           # Academic background
-├── projects.html            # Portfolio projects
-├── reviews.html             # Technical literature reviews
+├── projects.html            # Projects overview
 └── README.md                # Project documentation
 ```
 
