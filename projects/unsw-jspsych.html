@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>UNSW jsPsych Experiments - Daniel Nobelium</title>
+    <link rel="stylesheet" href="../assets/stylesheets/main.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,300,400">
+    <link rel="stylesheet" href="../assets/stylesheets/project-detail.css">
+  </head>
+
+  <body>
+    <!-- Header -->
+    <header class="primary-header container group">
+      <h1 class="logo">
+        <a href="../index.html">Daniel<br> Nobelium</a>
+      </h1>
+
+      <h3 class="tagline">Software Engineer</h3>
+
+      <nav class="nav primary-nav">
+        <a href="../index.html">Home</a>
+        <a href="../education.html">Education</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../reviews.html">Reviews</a>
+        <a href="../contact.html">Contact</a>
+      </nav>
+    </header>
+
+    <!-- Project Content -->
+    <section class="row">
+      <div class="container">
+        <!-- Breadcrumbs -->
+        <div class="breadcrumbs">
+          <a href="../index.html">Home</a> > 
+          <a href="../projects.html">Projects</a> > 
+          UNSW jsPsych Experiments
+        </div>
+
+        <!-- Project Header -->
+        <div class="project-header">
+          <h1>UNSW jsPsych Experiments</h1>
+          <div class="project-meta">
+            <span class="date">2019-2020</span>
+            <span class="client">University of New South Wales</span>
+            <span class="role">Research Developer</span>
+          </div>
+          <div class="tech-stack">
+            <span class="tech-badge">jsPsych</span>
+            <span class="tech-badge">JavaScript</span>
+            <span class="tech-badge">HTML/CSS</span>
+            <span class="tech-badge">Research Design</span>
+            <span class="tech-badge">Data Visualization</span>
+          </div>
+        </div>
+
+        <!-- Project Navigation -->
+        <nav class="project-nav">
+          <a href="#overview">Overview</a>
+          <a href="#challenge">Challenge</a>
+          <a href="#approach">Approach</a>
+          <a href="#code">Code Samples</a>
+          <a href="#demo">Demo</a>
+          <a href="#outcomes">Outcomes</a>
+        </nav>
+
+        <!-- Overview Section -->
+        <div id="overview" class="project-section">
+          <h2>Overview</h2>
+          <p>
+            Developed a suite of web-based psychological experiments for the University of New South Wales research department using jsPsych, HTML, and CSS. These experiments were designed to measure cognitive processes, decision-making patterns, and risk assessment behaviors in research participants.
+          </p>
+          <p>
+            The experiments were used in multiple research studies focused on understanding how individuals assess and respond to risk scenarios, with applications in both clinical psychology and behavioral economics.
+          </p>
+        </div>
+
+        <!-- Challenge Section -->
+        <div id="challenge" class="project-section">
+          <h2>Challenge</h2>
+          <p>
+            Creating effective psychology experiments for web deployment presented several challenges:
+          </p>
+          <ul>
+            <li>Ensuring precise timing for stimulus presentation and response measurement</li>
+            <li>Creating a consistent experience across different browsers and devices</li>
+            <li>Designing engaging tasks that maintained participant attention</li>
+            <li>Implementing complex randomization and counterbalancing of stimuli</li>
+            <li>Collecting and storing participant data securely and accurately</li>
+            <li>Meeting ethical standards for psychological research</li>
+          </ul>
+        </div>
+
+        <!-- Approach Section -->
+        <div id="approach" class="project-section">
+          <h2>Approach</h2>
+          <p>
+            My approach combined technical development with research methodology:
+          </p>
+          <ol>
+            <li>Collaborated with researchers to understand experimental design requirements</li>
+            <li>Built a modular framework using jsPsych for consistent experiment structure</li>
+            <li>Implemented precise timing mechanisms for stimulus presentation</li>
+            <li>Created custom plugins for specialized experimental paradigms</li>
+            <li>Developed data collection and storage solutions with privacy considerations</li>
+            <li>Built interactive visualizations for real-time data exploration</li>
+          </ol>
+        </div>
+
+        <!-- Code Samples Section -->
+        <div id="code" class="project-section">
+          <h2>Code Samples</h2>
+          
+          <h3>Experiment Configuration</h3>
+          <div class="code-block">
+            <pre><code class="language-javascript">
+// Main experiment configuration
+const experiment = {
+  timeline: [],
+  show_progress_bar: true,
+  preload_images: stimuli.images,
+  on_finish: function() {
+    jsPsych.data.displayData();
+    saveData(jsPsych.data.get().csv());
+  }
+};
+
+// Instructions block
+const instructions = {
+  type: 'html-keyboard-response',
+  stimulus: `
+    <div class="instructions">
+      <h2>Risk Assessment Task</h2>
+      <p>In this experiment, you will be shown a series of scenarios.</p>
+      <p>For each scenario, you need to evaluate the level of risk on a scale from 1-7.</p>
+      <p>1 = Very Low Risk, 7 = Very High Risk</p>
+      <p>Press the number key that corresponds to your rating.</p>
+      <p>Press SPACE to begin.</p>
+    </div>
+  `,
+  choices: [' ']
+};
+
+// Add instructions to timeline
+experiment.timeline.push(instructions);
+
+// Create trials with randomized stimuli
+const scenarios = generateScenarios();
+const trials = {
+  timeline: [
+    {
+      type: 'html-keyboard-response',
+      stimulus: jsPsych.timelineVariable('scenario'),
+      prompt: '<p>Rate the risk level (1-7)</p>',
+      choices: ['1', '2', '3', '4', '5', '6', '7'],
+      data: {
+        scenario_type: jsPsych.timelineVariable('type'),
+        scenario_id: jsPsych.timelineVariable('id'),
+        expected_risk: jsPsych.timelineVariable('expected_risk')
+      },
+      on_finish: function(data) {
+        // Convert key response to numerical value
+        data.rating = parseInt(data.response);
+        
+        // Calculate accuracy (how close to expected)
+        data.accuracy = 7 - Math.abs(data.expected_risk - data.rating);
+        
+        // Calculate response time
+        data.rt_seconds = data.rt / 1000;
+      }
+    }
+  ],
+  timeline_variables: scenarios,
+  randomize_order: true
+};
+
+// Add trials to timeline
+experiment.timeline.push(trials);
+
+// Debriefing block
+const debrief = {
+  type: 'html-keyboard-response',
+  stimulus: function() {
+    // Calculate average performance metrics
+    const trials = jsPsych.data.get().filter({trial_type: 'html-keyboard-response'});
+    const mean_rt = Math.round(trials.select('rt').mean());
+    const accuracy = Math.round(trials.select('accuracy').mean() * 100) / 100;
+    
+    return `
+      <div class="debriefing">
+        <h2>Task Complete</h2>
+        <p>Thank you for participating in this experiment.</p>
+        <p>Your average response time was ${mean_rt} ms.</p>
+        <p>Your average accuracy was ${accuracy} out of 7.</p>
+        <p>Press SPACE to continue.</p>
+      </div>
+    `;
+  },
+  choices: [' ']
+};
+
+// Add debrief to timeline
+experiment.timeline.push(debrief);
+
+// Initialize experiment
+jsPsych.init(experiment);
+            </code></pre>
+          </div>
+          
+          <h3>Custom jsPsych Plugin</h3>
+          <div class="code-block">
+            <pre><code class="language-javascript">
+// Custom jsPsych plugin for risk assessment with visual feedback
+jsPsych.plugins['risk-visual-feedback'] = (function() {
+
+  var plugin = {};
+
+  plugin.info = {
+    name: 'risk-visual-feedback',
+    parameters: {
+      stimulus: {
+        type: jsPsych.plugins.parameterType.HTML_STRING,
+        default: undefined
+      },
+      choices: {
+        type: jsPsych.plugins.parameterType.STRING,
+        default: undefined
+      },
+      risk_levels: {
+        type: jsPsych.plugins.parameterType.INT,
+        default: 7
+      },
+      show_feedback: {
+        type: jsPsych.plugins.parameterType.BOOL,
+        default: true
+      },
+      feedback_duration: {
+        type: jsPsych.plugins.parameterType.INT,
+        default: 1000
+      }
+    }
+  };
+
+  plugin.trial = function(display_element, trial) {
+    // Display stimulus
+    var html = `
+      <div class="risk-stimulus">${trial.stimulus}</div>
+      <div class="risk-scale">
+        <div class="scale-label">Very Low Risk</div>
+        <div class="scale-container">
+    `;
+    
+    // Create visual risk scale
+    for (let i = 1; i <= trial.risk_levels; i++) {
+      html += `<div class="scale-point" data-value="${i}">${i}</div>`;
+    }
+    
+    html += `
+        </div>
+        <div class="scale-label">Very High Risk</div>
+      </div>
+    `;
+    
+    display_element.innerHTML = html;
+    
+    // Response timing
+    var start_time = performance.now();
+    
+    // Response handler
+    function response_handler(e) {
+      var response_time = performance.now() - start_time;
+      
+      // Get the selected risk level
+      var selected;
+      if (e.type === 'click') {
+        selected = e.target.getAttribute('data-value');
+      } else if (e.type === 'keydown') {
+        var keyCode = e.keyCode;
+        selected = String.fromCharCode(keyCode);
+      }
+      
+      if (selected !== null && trial.choices.includes(selected)) {
+        // Show visual feedback if enabled
+        if (trial.show_feedback) {
+          display_element.querySelector(`.scale-point[data-value="${selected}"]`).classList.add('selected');
+          
+          setTimeout(function() {
+            end_trial(selected, response_time);
+          }, trial.feedback_duration);
+        } else {
+          end_trial(selected, response_time);
+        }
+      }
+    }
+    
+    // Add event listeners for mouse clicks
+    var scale_points = display_element.querySelectorAll('.scale-point');
+    for (var i = 0; i < scale_points.length; i++) {
+      scale_points[i].addEventListener('click', response_handler);
+    }
+    
+    // Add event listener for keyboard responses
+    function key_handler(e) {
+      var keyCode = e.keyCode;
+      var key = String.fromCharCode(keyCode);
+      
+      if (trial.choices.includes(key)) {
+        e.preventDefault();
+        response_handler(e);
+      }
+    }
+    
+    document.addEventListener('keydown', key_handler);
+    
+    // End trial and save data
+    function end_trial(response, rt) {
+      // Remove event listeners
+      document.removeEventListener('keydown', key_handler);
+      scale_points.forEach(point => {
+        point.removeEventListener('click', response_handler);
+      });
+      
+      // Clear display
+      display_element.innerHTML = '';
+      
+      // Save data
+      var trial_data = {
+        rt: rt,
+        stimulus: trial.stimulus,
+        response: response
+      };
+      
+      // End trial
+      jsPsych.finishTrial(trial_data);
+    }
+  };
+
+  return plugin;
+})();
+            </code></pre>
+          </div>
+        </div>
+
+        <!-- Demo Section -->
+        <div id="demo" class="project-section">
+          <h2>Demo</h2>
+          <p>
+            Below is a demonstration of one of the risk assessment experiments:
+          </p>
+          
+          <div class="video-container">
+            <!-- Replace with your actual video -->
+            <video controls poster="../assets/img/jspsych-video-poster.jpg">
+              <source src="../assets/videos/jspsych-demo.mp4" type="video/mp4">
+              Your browser doesn't support HTML5 video.
+            </video>
+          </div>
+        </div>
+
+        <!-- Outcomes Section -->
+        <div id="outcomes" class="project-section">
+          <h2>Outcomes</h2>
+          
+          <h3>Research Impact</h3>
+          <ul>
+            <li>Experiments were used in 3 published research papers in cognitive psychology</li>
+            <li>Data collected from over 500 participants across multiple studies</li>
+            <li>Framework was adopted by other research groups at the university</li>
+            <li>Results contributed to new theories in risk perception and decision-making</li>
+          </ul>
+          
+          <h3>Technical Achievements</h3>
+          <ul>
+            <li>Created reusable experimental templates for future studies</li>
+            <li>Achieved consistent timing precision across different browsers</li>
+            <li>Developed automated data processing and visualization tools</li>
+            <li>Implemented secure data handling practices compliant with ethics requirements</li>
+          </ul>
+          
+          <h3>Testimonial</h3>
+          <blockquote>
+            "Daniel's implementation of our experimental paradigms using jsPsych was exceptional. The code was well-structured, the timing precision was excellent, and the participant experience was seamless. His work significantly advanced our research program."
+            <footer>— Prof. Michael Chen, Psychology Department</footer>
+          </blockquote>
+        </div>
+
+        <!-- Project Navigation -->
+        <div class="project-navigation">
+          <a href="une-database.html">&larr; Previous: UNE Database</a>
+          <a href="../projects.html">Back to Projects</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top">↑</a>
+
+    <!-- Footer -->
+    <footer class="primary-footer container group">
+      <small>&copy; Daniel Nobelium 2023-2025 </small>
+
+      <nav class="nav">
+        <a href="../index.html">Home</a>
+        <a href="../education.html">Education</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../reviews.html">Reviews</a>
+        <a href="../contact.html">Contact</a>
+      </nav>
+      
+      <div class="social-links">
+        <a href="https://github.com/Dan-Nobelium" target="_blank">GitHub</a>
+        <a href="https://linkedin.com/in/danielnobelium" target="_blank">LinkedIn</a>
+      </div>
+    </footer>
+    
+    <script>
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          
+          document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+          });
+        });
+      });
+      
+      // Show/hide back to top button
+      window.addEventListener('scroll', function() {
+        const backToTopButton = document.querySelector('.back-to-top');
+        if (window.pageYOffset > 300) {
+          backToTopButton.style.display = 'flex';
+        } else {
+          backToTopButton.style.display = 'none';
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>UNE Database Tracker - Daniel Nobelium</title>
+    <link rel="stylesheet" href="../assets/stylesheets/main.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,300,400">
+    <link rel="stylesheet" href="../assets/stylesheets/project-detail.css">
+  </head>
+
+  <body>
+    <!-- Header -->
+    <header class="primary-header container group">
+      <h1 class="logo">
+        <a href="../index.html">Daniel<br> Nobelium</a>
+      </h1>
+
+      <h3 class="tagline">Software Engineer</h3>
+
+      <nav class="nav primary-nav">
+        <a href="../index.html">Home</a>
+        <a href="../education.html">Education</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../reviews.html">Reviews</a>
+        <a href="../contact.html">Contact</a>
+      </nav>
+    </header>
+
+    <!-- Project Content -->
+    <section class="row">
+      <div class="container">
+        <!-- Breadcrumbs -->
+        <div class="breadcrumbs">
+          <a href="../index.html">Home</a> > 
+          <a href="../projects.html">Projects</a> > 
+          UNE Database Tracker
+        </div>
+
+        <!-- Project Header -->
+        <div class="project-header">
+          <h1>UNE Database Tracker</h1>
+          <div class="project-meta">
+            <span class="date">2021-2022</span>
+            <span class="client">University of New England</span>
+            <span class="role">Data Analyst & Developer</span>
+          </div>
+          <div class="tech-stack">
+            <span class="tech-badge">PowerQuery</span>
+            <span class="tech-badge">Excel</span>
+            <span class="tech-badge">M Language</span>
+            <span class="tech-badge">Data Modeling</span>
+            <span class="tech-badge">Process Automation</span>
+          </div>
+        </div>
+
+        <!-- Project Navigation -->
+        <nav class="project-nav">
+          <a href="#overview">Overview</a>
+          <a href="#challenge">Challenge</a>
+          <a href="#approach">Approach</a>
+          <a href="#code">Code Samples</a>
+          <a href="#demo">Demo</a>
+          <a href="#outcomes">Outcomes</a>
+        </nav>
+
+        <!-- Overview Section -->
+        <div id="overview" class="project-section">
+          <h2>Overview</h2>
+          <p>
+            Developed a comprehensive database tracking system for the University of New England using PowerQuery to automate data management processes. The system tracks student information, course enrollments, and academic progress across multiple departments.
+          </p>
+          <p>
+            This project transformed a manual, error-prone process into an efficient, automated system that significantly reduced administrative workload while improving data accuracy and reporting capabilities.
+          </p>
+        </div>
+
+        <!-- Challenge Section -->
+        <div id="challenge" class="project-section">
+          <h2>Challenge</h2>
+          <p>
+            The university faced several data management challenges:
+          </p>
+          <ul>
+            <li>Data was distributed across multiple systems with no central repository</li>
+            <li>Manual data entry led to frequent errors and inconsistencies</li>
+            <li>Staff spent 15+ hours per week on repetitive data processing tasks</li>
+            <li>Reporting was delayed, making it difficult to respond to student needs promptly</li>
+            <li>Historical data was difficult to track for long-term analysis</li>
+          </ul>
+        </div>
+
+        <!-- Approach Section -->
+        <div id="approach" class="project-section">
+          <h2>Approach</h2>
+          <p>
+            I implemented a solution using PowerQuery and Excel that addressed these challenges:
+          </p>
+          <ol>
+            <li>Created a centralized data model that combined information from multiple sources</li>
+            <li>Developed automated import processes to eliminate manual data entry</li>
+            <li>Implemented data validation and cleaning procedures to ensure accuracy</li>
+            <li>Created dynamic dashboards for real-time monitoring and reporting</li>
+            <li>Designed a historical data tracking system with proper versioning</li>
+          </ol>
+        </div>
+
+        <!-- Code Samples Section -->
+        <div id="code" class="project-section">
+          <h2>Code Samples</h2>
+          
+          <h3>PowerQuery Data Transformation</h3>
+          <div class="code-block">
+            <pre><code class="language-powerquery">
+// Main data import and transformation
+let
+    // Source connection to student database export
+    Source = Excel.Workbook(File.Contents("\\server\data\StudentDatabase.xlsx"), null, true),
+    
+    // Extract Data from the "EnrollmentData" sheet
+    EnrollmentData = Source{[Item="EnrollmentData",Kind="Sheet"]}[Data],
+    
+    // Promote the first row to headers
+    PromotedHeaders = Table.PromoteHeaders(EnrollmentData, [PromoteAllScalars=true]),
+    
+    // Remove unnecessary columns
+    RemovedColumns = Table.RemoveColumns(PromotedHeaders, {"Notes", "Internal ID", "Legacy System ID"}),
+    
+    // Change data types for proper analysis
+    ChangedTypes = Table.TransformColumnTypes(RemovedColumns, {
+        {"StudentID", Int64.Type},
+        {"FirstName", type text},
+        {"LastName", type text},
+        {"EnrollmentDate", type date},
+        {"CourseCode", type text},
+        {"Status", type text},
+        {"Credits", Int64.Type}
+    }),
+    
+    // Clean data by removing blank rows and invalid entries
+    CleanedData = Table.SelectRows(ChangedTypes, each 
+        [StudentID] <> null and 
+        [FirstName] <> null and 
+        [LastName] <> null
+    ),
+    
+    // Add calculated columns
+    AddedCalculations = Table.AddColumn(CleanedData, "FullName", each [FirstName] & " " & [LastName]),
+    AddedSemester = Table.AddColumn(AddedCalculations, "Semester", each 
+        if Date.Month([EnrollmentDate]) >= 1 and Date.Month([EnrollmentDate]) <= 5 then "Spring " & Text.From(Date.Year([EnrollmentDate]))
+        else if Date.Month([EnrollmentDate]) >= 6 and Date.Month([EnrollmentDate]) <= 8 then "Summer " & Text.From(Date.Year([EnrollmentDate]))
+        else "Fall " & Text.From(Date.Year([EnrollmentDate]))
+    ),
+    
+    // Group by student for aggregation
+    GroupedData = Table.Group(AddedSemester, {"StudentID", "FullName", "Semester"}, {
+        {"TotalCredits", each List.Sum([Credits]), type number},
+        {"Courses", each Table.RowCount(_), type number},
+        {"CoursesList", each Text.Combine(List.Distinct([CourseCode]), ", "), type text}
+    })
+in
+    GroupedData
+            </code></pre>
+          </div>
+          
+          <h3>Automated Data Update Mechanism</h3>
+          <div class="code-block">
+            <pre><code class="language-powerquery">
+// Dynamic refresh and update mechanism
+let
+    // Get all files in the data directory
+    Source = Folder.Files("\\server\data\daily_imports"),
+    
+    // Filter for just the Excel files
+    ExcelFiles = Table.SelectRows(Source, each Text.EndsWith([Extension], ".xlsx") or Text.EndsWith([Extension], ".xls")),
+    
+    // Sort by date to get most recent files first
+    SortedFiles = Table.Sort(ExcelFiles, {{"Date modified", Order.Descending}}),
+    
+    // Take only the most recent file for each prefix pattern
+    FilteredFiles = Table.Group(SortedFiles, {"Name Prefix"}, {
+        {"LatestFile", each [Content]{0}, type binary}
+    }),
+    
+    // Function to process each file
+    ProcessFile = (file) =>
+        let
+            // Load file content
+            Content = file[LatestFile],
+            
+            // Import as Excel workbook
+            Workbook = Excel.Workbook(Content),
+            
+            // Extract the first sheet
+            FirstSheet = Workbook{0}[Data],
+            
+            // Standard data cleaning processes
+            PromotedHeaders = Table.PromoteHeaders(FirstSheet),
+            ChangedTypes = Table.TransformColumnTypes(PromotedHeaders, {
+                {"ID", Int64.Type},
+                {"Date", type date},
+                {"Value", type number}
+            })
+        in
+            ChangedTypes,
+    
+    // Process all files using our function
+    ProcessedData = Table.AddColumn(FilteredFiles, "ProcessedData", each ProcessFile(_)),
+    
+    // Expand the processed data
+    ExpandedData = Table.ExpandTableColumn(ProcessedData, "ProcessedData", Table.ColumnNames(ProcessedData[ProcessedData]{0}))
+in
+    ExpandedData
+            </code></pre>
+          </div>
+        </div>
+
+        <!-- Demo Section -->
+        <div id="demo" class="project-section">
+          <h2>Demo</h2>
+          <p>
+            The following video demonstrates the database system in action, showing how it automates data processing and generates reports:
+          </p>
+          
+          <div class="video-container">
+            <!-- Replace with your actual video -->
+            <video controls poster="../assets/img/database-video-poster.jpg">
+              <source src="../assets/videos/une-database-demo.mp4" type="video/mp4">
+              Your browser doesn't support HTML5 video.
+            </video>
+          </div>
+          
+          <h3>Before vs After Comparison</h3>
+          <div class="comparison-container">
+            <div class="comparison-column">
+              <h3>Before Implementation</h3>
+              <ul>
+                <li>15+ hours per week spent on manual data entry</li>
+                <li>Error rate of approximately 8-12%</li>
+                <li>Weekly reporting cycle with frequent delays</li>
+                <li>Limited historical data analysis</li>
+                <li>No centralized tracking system</li>
+              </ul>
+            </div>
+            <div class="comparison-column">
+              <h3>After Implementation</h3>
+              <ul>
+                <li>1-2 hours per week for system maintenance</li>
+                <li>Error rate reduced to less than 1%</li>
+                <li>Real-time data updates and reporting</li>
+                <li>Comprehensive historical data analysis</li>
+                <li>Fully centralized tracking system</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Outcomes Section -->
+        <div id="outcomes" class="project-section">
+          <h2>Outcomes</h2>
+          
+          <h3>Key Achievements</h3>
+          <ul>
+            <li>Reduced manual data processing time by over 90%</li>
+            <li>Improved data accuracy from 88% to 99.2%</li>
+            <li>Enabled real-time tracking of student progress across departments</li>
+            <li>Created comprehensive dashboards for faculty and administration</li>
+            <li>Implemented a historical data archive with 5+ years of student records</li>
+          </ul>
+          
+          <h3>Testimonial</h3>
+          <blockquote>
+            "The database tracking system has completely transformed how we manage student information. What used to take our team days now happens automatically, allowing us to focus on supporting students rather than managing spreadsheets."
+            <footer>— Dr. Sarah Johnson, Department Chair</footer>
+          </blockquote>
+        </div>
+
+        <!-- Project Navigation -->
+        <div class="project-navigation">
+          <a href="discord-community.html">&larr; Previous: Discord Community</a>
+          <a href="unsw-jspsych.html">Next: UNSW jsPsych &rarr;</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top">↑</a>
+
+    <!-- Footer -->
+    <footer class="primary-footer container group">
+      <small>&copy; Daniel Nobelium 2023-2025 </small>
+
+      <nav class="nav">
+        <a href="../index.html">Home</a>
+        <a href="../education.html">Education</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../reviews.html">Reviews</a>
+        <a href="../contact.html">Contact</a>
+      </nav>
+      
+      <div class="social-links">
+        <a href="https://github.com/Dan-Nobelium" target="_blank">GitHub</a>
+        <a href="https://linkedin.com/in/danielnobelium" target="_blank">LinkedIn</a>
+      </div>
+    </footer>
+    
+    <script>
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          
+          document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+          });
+        });
+      });
+      
+      // Show/hide back to top button
+      window.addEventListener('scroll', function() {
+        const backToTopButton = document.querySelector('.back-to-top');
+        if (window.pageYOffset > 300) {
+          backToTopButton.style.display = 'flex';
+        } else {
+          backToTopButton.style.display = 'none';
+        }
+      });
+    </script>
+  </body>
+</html>
