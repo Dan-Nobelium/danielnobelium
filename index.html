@@ -1,83 +1,363 @@
 <!DOCTYPE html>
 <html lang="en">
-
   <head>
     <meta charset="utf-8">
-    <title>Daniel Nobelium</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daniel Nobelium - Software Engineer</title>
     <link rel="stylesheet" href="assets/stylesheets/main.css">
+    <link rel="stylesheet" href="assets/stylesheets/single-page.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,300,400">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
   </head>
 
   <body>
     <!-- Header -->
     <header class="primary-header container group">
       <h1 class="logo">
-        <a href="index.html">Daniel<br> Nobelium</a>
+        <a href="#home">Daniel<br> Nobelium</a>
       </h1>
 
       <h3 class="tagline">Software Engineer</h3>
 
       <nav class="nav primary-nav">
-        <a href="index.html">Home</a>
-        <a href="education.html">Education</a>
-        <a href="projects.html">Projects</a>
-        <a href="contact.html">Contact</a>
+        <a href="#home">Home</a>
+        <a href="#projects">Projects</a>
+        <a href="#education">Education</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
       </nav>
     </header>
 
-    <!-- Hero -->
-    <section class="hero container">
-      <h2>Sydney-based fullstack developer with a Masters in Information Technology</h2>
-      <p>Check out <a href="https://dan-nobelium.github.io/Project_Planets/" style="color: grey;">my latest software</a> measuring individual risk taking!</p>
-      <a class="btn btn-alt" href="mailto:danielnobellium@gmail.com">Contact</a>
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+      <div class="container">
+        <div class="hero-content">
+          <h1>Sydney-based Full Stack Developer</h1>
+          <p>Specialized in web applications and research software with a Master's in Information Technology</p>
+          <div class="hero-buttons">
+            <a href="#projects" class="btn btn-primary">View My Work</a>
+            <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- Teasers -->
-    <section class="row">
-      <div class="grid">
-        <!-- education -->
-        <section class="teaser col-1-3">
-          <a href="education.html">
-            <h5>Education</h5>
-            <h3>Credentials</h3>
-          </a>
-          <p>Tertiary education from UNSW and UNE.</p>
-        </section><!--
+    <!-- Projects Section -->
+    <section id="projects" class="section projects-section">
+      <div class="container">
+        <h2 class="section-heading">Featured Projects</h2>
+        <p class="section-subheading">Selected works showcasing my technical skills and problem-solving approach</p>
+        
+        <div class="featured-projects">
+          <!-- Project 1: UNSW jsPsych Experiment -->
+          <div class="featured-project">
+            <div class="project-image">
+              <img src="assets/img/jspsych-preview.jpg" alt="Project Planets">
+            </div>
+            <div class="project-details">
+              <h3>Project Planets</h3>
+              <p class="project-subtitle">Behavioral Research Platform</p>
+              <p class="project-description">
+                A sophisticated JavaScript application for studying decision-making and risk assessment. 
+                Built with jsPsych and deployed using Docker, this project provides a platform for 
+                psychological research on how people learn from experience and adapt to changing environments.
+              </p>
+              <div class="tech-stack">
+                <span class="tech-badge">JavaScript</span>
+                <span class="tech-badge">jsPsych</span>
+                <span class="tech-badge">Docker</span>
+                <span class="tech-badge">JATOS</span>
+              </div>
+              <div class="project-links">
+                <a href="projects/unsw-jspsych.html" class="btn btn-sm">View Details</a>
+                <a href="https://github.com/Dan-Nobelium/Project_Planets" class="btn btn-sm btn-outline" target="_blank">
+                  <i class="fab fa-github"></i> GitHub
+                </a>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Project 2: UNE Database Tool -->
+          <div class="featured-project">
+            <div class="project-image">
+              <img src="assets/img/database-preview.jpg" alt="UNE Journal Tool">
+            </div>
+            <div class="project-details">
+              <h3>UNE Read and Publish Journal Tool</h3>
+              <p class="project-subtitle">Data Integration & Automation</p>
+              <p class="project-description">
+                Developed a comprehensive Excel-based solution that helps researchers identify eligible journals 
+                under various publishing agreements. This tool consolidates data from multiple sources and automates 
+                the process of determining publishing eligibility, saving significant time and reducing errors.
+              </p>
+              <div class="tech-stack">
+                <span class="tech-badge">PowerQuery</span>
+                <span class="tech-badge">Excel</span>
+                <span class="tech-badge">M Language</span>
+                <span class="tech-badge">VBA</span>
+              </div>
+              <div class="project-links">
+                <a href="projects/une-database.html" class="btn btn-sm">View Details</a>
+                <a href="https://github.com/Dan-Nobelium/une-journal-tool" class="btn btn-sm btn-outline" target="_blank">
+                  <i class="fab fa-github"></i> GitHub
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-        Projects
-        --><section class="teaser col-1-3">
-          <a href="projects.html">
-            <h5>Projects</h5>
-            <h3>Examples and Sourcecode</h3>
-          </a>
-          <p>Project highlights and case studies.</p>
-        </section><!--
+    <!-- Education Section -->
+    <section id="education" class="section education-section">
+      <div class="container">
+        <h2 class="section-heading">Education</h2>
+        <p class="section-subheading">Academic background and qualifications</p>
+        
+        <div class="education-cards">
+          <div class="education-card">
+            <div class="education-logo">
+              <img src="assets/img/UNElogo.png" alt="University of New England logo">
+            </div>
+            <div class="education-details">
+              <h3>M.S. Information Technology</h3>
+              <p class="education-period">University of New England, 2020-2022</p>
+              <p class="education-description">
+                Advanced study in software engineering, database systems, and web application development.
+                Specialized in data integration and automation solutions.
+              </p>
+              <div class="key-courses">
+                <h4>Key Courses</h4>
+                <ul>
+                  <li>Software Engineering</li>
+                  <li>Database Systems</li>
+                  <li>Web Development</li>
+                  <li>Network Security</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          
+          <div class="education-card">
+            <div class="education-logo">
+              <img src="assets/img/UNSW_logo_white.png" alt="University of New South Wales logo">
+            </div>
+            <div class="education-details">
+              <h3>B.A. Psychology & Criminology</h3>
+              <p class="education-period">University of New South Wales, 2015-2019</p>
+              <p class="education-description">
+                Dual major providing strong foundations in research methodology, 
+                data analysis, and understanding human behavior. This background enhances
+                my approach to UX design and software development.
+              </p>
+              <div class="key-courses">
+                <h4>Key Courses</h4>
+                <ul>
+                  <li>Research Methods</li>
+                  <li>Cognitive Psychology</li>
+                  <li>Statistical Analysis</li>
+                  <li>Research Design</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Skills Section -->
+    <section id="skills" class="section skills-section">
+      <div class="container">
+        <h2 class="section-heading">Technical Skills</h2>
+        <p class="section-subheading">Technologies and tools I work with</p>
+        
+        <div class="skills-container">
+          <div class="skills-category">
+            <h3>Languages</h3>
+            <div class="skills-list">
+              <div class="skill-item">
+                <span class="skill-name">JavaScript</span>
+                <div class="skill-bar">
+                  <div class="skill-level" style="width: 90%"></div>
+                </div>
+              </div>
+              <div class="skill-item">
+                <span class="skill-name">HTML/CSS</span>
+                <div class="skill-bar">
+                  <div class="skill-level" style="width: 85%"></div>
+                </div>
+              </div>
+              <div class="skill-item">
+                <span class="skill-name">Python</span>
+                <div class="skill-bar">
+                  <div class="skill-level" style="width: 80%"></div>
+                </div>
+              </div>
+              <div class="skill-item">
+                <span class="skill-name">PowerQuery M</span>
+                <div class="skill-bar">
+                  <div class="skill-level" style="width: 85%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="skills-category">
+            <h3>Frameworks & Libraries</h3>
+            <div class="skills-list">
+              <div class="skill-item">
+                <span class="skill-name">Node.js</span>
+                <div class="skill-bar">
+                  <div class="skill-level" style="width: 80%"></div>
+                </div>
+              </div>
+              <div class="skill-item">
+                <span class="skill-name">jsPsych</span>
+                <div class="skill-bar">
+                  <div class="skill-level" style="width: 95%"></div>
+                </div>
+              </div>
+              <div class="skill-item">
+                <span class="skill-name">React</span>
+                <div class="skill-bar">
+                  <div class="skill-level" style="width: 75%"></div>
+                </div>
+              </div>
+              <div class="skill-item">
+                <span class="skill-name">Express</span>
+                <div class="skill-bar">
+                  <div class="skill-level" style="width: 70%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="skills-category">
+            <h3>Tools & Technologies</h3>
+            <div class="skills-list">
+              <div class="skill-item">
+                <span class="skill-name">Docker</span>
+                <div class="skill-bar">
+                  <div class="skill-level" style="width: 85%"></div>
+                </div>
+              </div>
+              <div class="skill-item">
+                <span class="skill-name">Git/GitHub</span>
+                <div class="skill-bar">
+                  <div class="skill-level" style="width: 90%"></div>
+                </div>
+              </div>
+              <div class="skill-item">
+                <span class="skill-name">Excel/VBA</span>
+                <div class="skill-bar">
+                  <div class="skill-level" style="width: 90%"></div>
+                </div>
+              </div>
+              <div class="skill-item">
+                <span class="skill-name">SQL</span>
+                <div class="skill-bar">
+                  <div class="skill-level" style="width: 75%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-        Contact
-        --><section class="teaser col-1-3">
-          <a href="contact.html">
-            <h5>Contact</h5>
-            <h3>Get in Touch</h3>
-          </a>
-          <p>Reach out for collaboration.</p>
-        </section>
+    <!-- Contact Section -->
+    <section id="contact" class="section contact-section">
+      <div class="container">
+        <h2 class="section-heading">Get In Touch</h2>
+        <p class="section-subheading">I'm open to job opportunities and interesting projects</p>
+        
+        <div class="contact-content">
+          <div class="contact-info">
+            <div class="contact-item">
+              <i class="fas fa-envelope"></i>
+              <h3>Email</h3>
+              <p><a href="mailto:danielnobellium@gmail.com">danielnobellium@gmail.com</a></p>
+            </div>
+            
+            <div class="contact-item">
+              <i class="fab fa-github"></i>
+              <h3>GitHub</h3>
+              <p><a href="https://github.com/Dan-Nobelium" target="_blank">github.com/Dan-Nobelium</a></p>
+            </div>
+            
+            <div class="contact-item">
+              <i class="fab fa-linkedin"></i>
+              <h3>LinkedIn</h3>
+              <p><a href="https://linkedin.com/in/danielnobelium" target="_blank">linkedin.com/in/danielnobelium</a></p>
+            </div>
+            
+            <div class="contact-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <h3>Location</h3>
+              <p>Sydney, Australia</p>
+            </div>
+          </div>
+          
+          <div class="contact-cta">
+            <a href="mailto:danielnobellium@gmail.com" class="btn btn-large">Send Me an Email</a>
+          </div>
+        </div>
       </div>
     </section>
 
     <!-- Footer -->
-    <footer class="primary-footer container group">
-      <small>&copy; Daniel Nobelium 2023-2025 </small>
-      <nav class="nav primary-nav">
-        <a href="index.html">Home</a>
-        <a href="education.html">Education</a>
-        <a href="projects.html">Projects</a>
-        <a href="contact.html">Contact</a>
-      </nav>
-      
-      <div class="social-links">
-        <a href="https://github.com/Dan-Nobelium" target="_blank">GitHub</a>
-        <a href="https://linkedin.com/in/danielnobelium" target="_blank">LinkedIn</a>
+    <footer class="primary-footer">
+      <div class="container">
+        <div class="footer-content">
+          <small>&copy; Daniel Nobelium 2023-2025</small>
+          <div class="social-links">
+            <a href="https://github.com/Dan-Nobelium" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://linkedin.com/in/danielnobelium" target="_blank"><i class="fab fa-linkedin"></i></a>
+          </div>
+        </div>
       </div>
     </footer>
+    
+    <!-- Back to Top Button -->
+    <a href="#home" class="back-to-top" id="backToTop">
+      <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <!-- Script for smooth scrolling and back to top button -->
+    <script>
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          e.preventDefault();
+          
+          document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+          });
+        });
+      });
+      
+      // Show/hide back to top button
+      const backToTopButton = document.getElementById('backToTop');
+      
+      window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+          backToTopButton.classList.add('visible');
+        } else {
+          backToTopButton.classList.remove('visible');
+        }
+      });
+      
+      // Make header sticky on scroll
+      const header = document.querySelector('.primary-header');
+      const headerOffset = header.offsetTop;
+      
+      window.addEventListener('scroll', () => {
+        if (window.pageYOffset > headerOffset) {
+          header.classList.add('sticky');
+        } else {
+          header.classList.remove('sticky');
+        }
+      });
+    </script>
   </body>
 </html>
