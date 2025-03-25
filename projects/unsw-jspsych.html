@@ -25,6 +25,21 @@
       </nav>
     </header>
 
+    <!-- Hero Banner -->
+    <div class="project-hero">
+      <img src="../assets/img/jspsych-preview.jpg" alt="UNSW jsPsych Experiments">
+      <div class="project-hero-overlay">
+        <h1>Project Planets</h1>
+        <div class="tech-stack">
+          <span class="tech-badge">jsPsych</span>
+          <span class="tech-badge">JavaScript</span>
+          <span class="tech-badge">Behavioral Research</span>
+          <span class="tech-badge">Docker</span>
+        </div>
+        <a href="https://github.com/Dan-Nobelium/Project_Planets" class="github-link" target="_blank">View on GitHub</a>
+      </div>
+    </div>
+
     <!-- Project Content -->
     <section class="row">
       <div class="container">
@@ -32,24 +47,7 @@
         <div class="breadcrumbs">
           <a href="../index.html">Home</a> > 
           <a href="../projects.html">Projects</a> > 
-          UNSW jsPsych Experiments
-        </div>
-
-        <!-- Project Header -->
-        <div class="project-header">
-          <h1>UNSW jsPsych Experiments</h1>
-          <div class="project-meta">
-            <span class="date">2019-2020</span>
-            <span class="client">University of New South Wales</span>
-            <span class="role">Research Developer</span>
-          </div>
-          <div class="tech-stack">
-            <span class="tech-badge">jsPsych</span>
-            <span class="tech-badge">JavaScript</span>
-            <span class="tech-badge">HTML/CSS</span>
-            <span class="tech-badge">Research Design</span>
-            <span class="tech-badge">Data Visualization</span>
-          </div>
+          Project Planets
         </div>
 
         <!-- Project Navigation -->
@@ -66,10 +64,13 @@
         <div id="overview" class="project-section">
           <h2>Overview</h2>
           <p>
-            Developed a suite of web-based psychological experiments for the University of New South Wales research department using jsPsych, HTML, and CSS. These experiments were designed to measure cognitive processes, decision-making patterns, and risk assessment behaviors in research participants.
+            Project Planets is a sophisticated JavaScript-based web application designed for conducting research on decision-making, risk assessment, and learning patterns. It presents an interactive space-themed environment where participants engage with different planets to earn rewards while managing the risk of pirate attacks.
           </p>
           <p>
-            The experiments were used in multiple research studies focused on understanding how individuals assess and respond to risk scenarios, with applications in both clinical psychology and behavioral economics.
+            Built using the jsPsych framework and deployed with Docker, the application provides a fully configurable platform for psychological research with detailed data collection capabilities. The experiment guides participants through multiple phases with varying reward-punishment contingencies, systematically revealing how people adapt their behavior based on experience.
+          </p>
+          <p>
+            This project showcases my abilities in both frontend development and research technology, combining clean, maintainable code with scientifically rigorous experimental design.
           </p>
         </div>
 
@@ -77,15 +78,16 @@
         <div id="challenge" class="project-section">
           <h2>Challenge</h2>
           <p>
-            Creating effective psychology experiments for web deployment presented several challenges:
+            Developing a behavioral experiment platform presented several unique challenges:
           </p>
           <ul>
-            <li>Ensuring precise timing for stimulus presentation and response measurement</li>
-            <li>Creating a consistent experience across different browsers and devices</li>
-            <li>Designing engaging tasks that maintained participant attention</li>
-            <li>Implementing complex randomization and counterbalancing of stimuli</li>
-            <li>Collecting and storing participant data securely and accurately</li>
-            <li>Meeting ethical standards for psychological research</li>
+            <li>Creating a complex interactive environment that maintains scientific control while being engaging for participants</li>
+            <li>Implementing precise timing mechanisms for stimulus presentation and response measurement</li>
+            <li>Designing a system to handle probabilistic rewards and outcomes with carefully calibrated parameters</li>
+            <li>Developing custom plugins to extend the core jsPsych functionality for specialized experiment requirements</li>
+            <li>Building a secure, scalable deployment solution that can handle concurrent participants and protect research data</li>
+            <li>Ensuring consistent behavior across different browsers and devices</li>
+            <li>Creating a flexible architecture that allows researchers to modify parameters without needing to understand the codebase</li>
           </ul>
         </div>
 
@@ -93,15 +95,28 @@
         <div id="approach" class="project-section">
           <h2>Approach</h2>
           <p>
-            My approach combined technical development with research methodology:
+            My approach combined software engineering best practices with an understanding of behavioral research requirements:
           </p>
           <ol>
-            <li>Collaborated with researchers to understand experimental design requirements</li>
-            <li>Built a modular framework using jsPsych for consistent experiment structure</li>
-            <li>Implemented precise timing mechanisms for stimulus presentation</li>
-            <li>Created custom plugins for specialized experimental paradigms</li>
-            <li>Developed data collection and storage solutions with privacy considerations</li>
-            <li>Built interactive visualizations for real-time data exploration</li>
+            <li>Built a modular architecture using JavaScript and jsPsych as the foundation</li>
+            <li>Developed custom jsPsych plugins for the specialized functionality required by the experiment, including:
+              <ul>
+                <li>planet-response.js: A core plugin handling the main interactions with planets and ships</li>
+                <li>jspsych-inference-check.js: A plugin for collecting participants' inferences about relationships between stimuli</li>
+                <li>jspsych-valence-check.js: A plugin for collecting emotional responses to game elements</li>
+                <li>jspsych-html-slider-triangle.js: A custom plugin for ternary choice data collection</li>
+              </ul>
+            </li>
+            <li>Implemented a comprehensive Docker-based deployment system allowing for:
+              <ul>
+                <li>Easy installation on any cloud provider</li>
+                <li>Secure SSL/TLS encryption for all participant data</li>
+                <li>Integrated data storage and experiment management through JATOS</li>
+                <li>Simple file management through a dedicated file browser interface</li>
+              </ul>
+            </li>
+            <li>Created thorough documentation for both researchers and developers to ensure sustainability of the platform</li>
+            <li>Designed a flexible configuration system allowing researchers to modify experimental parameters without code changes</li>
           </ol>
         </div>
 
@@ -109,233 +124,118 @@
         <div id="code" class="project-section">
           <h2>Code Samples</h2>
           
-          <h3>Experiment Configuration</h3>
+          <h3>Custom Planet Response Plugin</h3>
           <div class="code-block">
             <pre><code class="language-javascript">
-// Main experiment configuration
-const experiment = {
-  timeline: [],
-  show_progress_bar: true,
-  preload_images: stimuli.images,
-  on_finish: function() {
-    jsPsych.data.displayData();
-    saveData(jsPsych.data.get().csv());
-  }
-};
-
-// Instructions block
-const instructions = {
-  type: 'html-keyboard-response',
-  stimulus: `
-    <div class="instructions">
-      <h2>Risk Assessment Task</h2>
-      <p>In this experiment, you will be shown a series of scenarios.</p>
-      <p>For each scenario, you need to evaluate the level of risk on a scale from 1-7.</p>
-      <p>1 = Very Low Risk, 7 = Very High Risk</p>
-      <p>Press the number key that corresponds to your rating.</p>
-      <p>Press SPACE to begin.</p>
-    </div>
-  `,
-  choices: [' ']
-};
-
-// Add instructions to timeline
-experiment.timeline.push(instructions);
-
-// Create trials with randomized stimuli
-const scenarios = generateScenarios();
-const trials = {
-  timeline: [
-    {
-      type: 'html-keyboard-response',
-      stimulus: jsPsych.timelineVariable('scenario'),
-      prompt: '<p>Rate the risk level (1-7)</p>',
-      choices: ['1', '2', '3', '4', '5', '6', '7'],
-      data: {
-        scenario_type: jsPsych.timelineVariable('type'),
-        scenario_id: jsPsych.timelineVariable('id'),
-        expected_risk: jsPsych.timelineVariable('expected_risk')
-      },
-      on_finish: function(data) {
-        // Convert key response to numerical value
-        data.rating = parseInt(data.response);
-        
-        // Calculate accuracy (how close to expected)
-        data.accuracy = 7 - Math.abs(data.expected_risk - data.rating);
-        
-        // Calculate response time
-        data.rt_seconds = data.rt / 1000;
+// Example from the custom planet-response-command.js plugin
+let planet_ship = {
+  type: "planet-response-command",
+  show_ship: true,
+  prompt: planet_labels,
+  stimulus: planet_list,
+  stimulus_select: stim_selector_highlight,
+  ship_stimulus: ship_list,
+  reset_planet_wait: reset_planet_wait_const,
+  shield_charging_time: shield_charging_time_const,
+  ship_attack_time: ship_attack_time_const,
+  ship_attack_effect: get_indexed_constant_array('ship_attack_effect'),
+  show_whether_shield_blocked_attack_or_bonus:
+    show_whether_shield_blocked_attack_or_bonus,
+  block_duration: block_duration,
+  probability_trade: get_indexed_constant_array('probability_trade'),
+  probability_ship: get_indexed_constant_array('probability_ship'),
+  probability_shield: get_indexed_constant_array('probability_shield'),
+  trade_outcomes: get_indexed_constant_array('trade_outcome_set'),
+  ship_outcomes: get_indexed_constant_array('ship_emergence_set'),
+  shield_outcomes: get_indexed_constant_array('shield_available_set'),
+  attack_images: get_indexed_constant_array('attack_img'),
+  image_paths_to_preload: get_indexed_constant_array('attack_img_path'),
+  attack_text_colours: get_indexed_constant_array('attack_text_colour'),
+  attack_blocked_images: get_indexed_constant_array('attack_blocked_img'),
+  win_100_text: win_100_text,
+  data: {
+    phase: "phase2",
+    block_type: "planet_ship",
+  },
+  on_start: function(trial) {
+    trial.data.points = points;
+    trial.data.block_number = block_number;
+    trial.data.trial_number = trial_number;
+  },
+  on_finish: function(data) {
+    points = data.points_total;
+    trial_number = data.trial_number;
+    trial_number++;
+    // script for continuous response block
+    if (continuousResp) {
+      jsPsych.endCurrentTimeline();
+      block_number = data.block_number;
+      block_number++;
+      console.log("Block " + block_number);
+    } else {
+      if (trial_number >= nTrialspBlk) {
+        trial_number = 0;
+        block_number = data.block_number;
+        block_number++;
+        console.log("Block " + block_number);
       }
     }
-  ],
-  timeline_variables: scenarios,
-  randomize_order: true
-};
-
-// Add trials to timeline
-experiment.timeline.push(trials);
-
-// Debriefing block
-const debrief = {
-  type: 'html-keyboard-response',
-  stimulus: function() {
-    // Calculate average performance metrics
-    const trials = jsPsych.data.get().filter({trial_type: 'html-keyboard-response'});
-    const mean_rt = Math.round(trials.select('rt').mean());
-    const accuracy = Math.round(trials.select('accuracy').mean() * 100) / 100;
-    
-    return `
-      <div class="debriefing">
-        <h2>Task Complete</h2>
-        <p>Thank you for participating in this experiment.</p>
-        <p>Your average response time was ${mean_rt} ms.</p>
-        <p>Your average accuracy was ${accuracy} out of 7.</p>
-        <p>Press SPACE to continue.</p>
-      </div>
-    `;
   },
-  choices: [' ']
-};
-
-// Add debrief to timeline
-experiment.timeline.push(debrief);
-
-// Initialize experiment
-jsPsych.init(experiment);
-            </code></pre>
+};</code></pre>
           </div>
           
-          <h3>Custom jsPsych Plugin</h3>
+          <h3>Docker Deployment Configuration</h3>
           <div class="code-block">
-            <pre><code class="language-javascript">
-// Custom jsPsych plugin for risk assessment with visual feedback
-jsPsych.plugins['risk-visual-feedback'] = (function() {
+            <pre><code class="language-yaml">
+version: "3.8"
 
-  var plugin = {};
+name: researchproject
+services:
+  proxy:
+    image: jc21/nginx-proxy-manager:2.10.4
+    restart: unless-stopped
+    ports:
+      - 80:80
+      - 443:443
+      - 81:81
+    depends_on:
+      jatos:
+        condition: service_healthy
+    volumes:
+      - ./data:/data
+      - ./letsencrypt:/etc/letsecrypt
 
-  plugin.info = {
-    name: 'risk-visual-feedback',
-    parameters: {
-      stimulus: {
-        type: jsPsych.plugins.parameterType.HTML_STRING,
-        default: undefined
-      },
-      choices: {
-        type: jsPsych.plugins.parameterType.STRING,
-        default: undefined
-      },
-      risk_levels: {
-        type: jsPsych.plugins.parameterType.INT,
-        default: 7
-      },
-      show_feedback: {
-        type: jsPsych.plugins.parameterType.BOOL,
-        default: true
-      },
-      feedback_duration: {
-        type: jsPsych.plugins.parameterType.INT,
-        default: 1000
-      }
-    }
-  };
+  jatos:
+    image: jatos/jatos:3.9.3
+    restart: unless-stopped
+    ports:
+      - 9000:9000
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/ping"]
+      interval: 2s
+      timeout: 2s
+      retries: 1000
+      start_period: 10s
+    volumes:
+      - ./jatos-logs:/opt/jatos/logs
+      - ./jatos-data:/opt/jatos_data
+      - ./jatos.conf:/opt/jatos/conf/jatos.conf:ro
 
-  plugin.trial = function(display_element, trial) {
-    // Display stimulus
-    var html = `
-      <div class="risk-stimulus">${trial.stimulus}</div>
-      <div class="risk-scale">
-        <div class="scale-label">Very Low Risk</div>
-        <div class="scale-container">
-    `;
-    
-    // Create visual risk scale
-    for (let i = 1; i <= trial.risk_levels; i++) {
-      html += `<div class="scale-point" data-value="${i}">${i}</div>`;
-    }
-    
-    html += `
-        </div>
-        <div class="scale-label">Very High Risk</div>
-      </div>
-    `;
-    
-    display_element.innerHTML = html;
-    
-    // Response timing
-    var start_time = performance.now();
-    
-    // Response handler
-    function response_handler(e) {
-      var response_time = performance.now() - start_time;
-      
-      // Get the selected risk level
-      var selected;
-      if (e.type === 'click') {
-        selected = e.target.getAttribute('data-value');
-      } else if (e.type === 'keydown') {
-        var keyCode = e.keyCode;
-        selected = String.fromCharCode(keyCode);
-      }
-      
-      if (selected !== null && trial.choices.includes(selected)) {
-        // Show visual feedback if enabled
-        if (trial.show_feedback) {
-          display_element.querySelector(`.scale-point[data-value="${selected}"]`).classList.add('selected');
-          
-          setTimeout(function() {
-            end_trial(selected, response_time);
-          }, trial.feedback_duration);
-        } else {
-          end_trial(selected, response_time);
-        }
-      }
-    }
-    
-    // Add event listeners for mouse clicks
-    var scale_points = display_element.querySelectorAll('.scale-point');
-    for (var i = 0; i < scale_points.length; i++) {
-      scale_points[i].addEventListener('click', response_handler);
-    }
-    
-    // Add event listener for keyboard responses
-    function key_handler(e) {
-      var keyCode = e.keyCode;
-      var key = String.fromCharCode(keyCode);
-      
-      if (trial.choices.includes(key)) {
-        e.preventDefault();
-        response_handler(e);
-      }
-    }
-    
-    document.addEventListener('keydown', key_handler);
-    
-    // End trial and save data
-    function end_trial(response, rt) {
-      // Remove event listeners
-      document.removeEventListener('keydown', key_handler);
-      scale_points.forEach(point => {
-        point.removeEventListener('click', response_handler);
-      });
-      
-      // Clear display
-      display_element.innerHTML = '';
-      
-      // Save data
-      var trial_data = {
-        rt: rt,
-        stimulus: trial.stimulus,
-        response: response
-      };
-      
-      // End trial
-      jsPsych.finishTrial(trial_data);
-    }
-  };
-
-  return plugin;
-})();
-            </code></pre>
+  filebrowser:
+    image: filebrowser/filebrowser:v2.31.1
+    restart: unless-stopped
+    ports:
+      - 8080:8080
+    depends_on:
+      jatos:
+        condition: service_healthy
+    volumes:
+      - ./jatos-data/study_assets_root:/srv
+      - ./filebrowser/database.db:/database.db
+      - ./filebrowser/.filebrowser.json:/.filebrowser.json
+    environment:
+      - PUID=1000
+      - GUID=1000</code></pre>
           </div>
         </div>
 
@@ -343,43 +243,61 @@ jsPsych.plugins['risk-visual-feedback'] = (function() {
         <div id="demo" class="project-section">
           <h2>Demo</h2>
           <p>
-            Below is a demonstration of one of the risk assessment experiments:
+            The Project Planets experiment follows a structured flow designed to measure how people learn from experience and adjust their behavior:
           </p>
           
           <div class="video-container">
-            <!-- Replace with your actual video -->
             <video controls poster="../assets/img/jspsych-video-poster.jpg">
               <source src="../assets/videos/jspsych-demo.mp4" type="video/mp4">
               Your browser doesn't support HTML5 video.
             </video>
           </div>
+          
+          <h3>Experiment Flow</h3>
+          <ol>
+            <li><strong>Phase 1:</strong> Participants interact with planets to earn rewards, learning the baseline reward probabilities for each planet</li>
+            <li><strong>Assessment:</strong> Participants complete valence and inference checks to measure their current understanding</li>
+            <li><strong>Phase 2:</strong> Ships are introduced that can attack and reduce points, creating a risk-reward tradeoff</li>
+            <li><strong>Assessment:</strong> Further valence and inference checks to measure updated understanding</li>
+            <li><strong>Phase 3:</strong> Participants are explicitly told the contingencies between planets and ships</li>
+            <li><strong>Final Phase:</strong> Behavior is measured to see how explicit knowledge affects decision-making</li>
+          </ol>
         </div>
 
         <!-- Outcomes Section -->
         <div id="outcomes" class="project-section">
           <h2>Outcomes</h2>
           
-          <h3>Research Impact</h3>
-          <ul>
-            <li>Experiments were used in 3 published research papers in cognitive psychology</li>
-            <li>Data collected from over 500 participants across multiple studies</li>
-            <li>Framework was adopted by other research groups at the university</li>
-            <li>Results contributed to new theories in risk perception and decision-making</li>
-          </ul>
-          
           <h3>Technical Achievements</h3>
           <ul>
-            <li>Created reusable experimental templates for future studies</li>
-            <li>Achieved consistent timing precision across different browsers</li>
-            <li>Developed automated data processing and visualization tools</li>
-            <li>Implemented secure data handling practices compliant with ethics requirements</li>
+            <li>Successfully deployed as a scalable, containerized application usable by researchers worldwide</li>
+            <li>Created reusable components that have been adopted in other psychological research projects</li>
+            <li>Developed comprehensive documentation enabling other researchers to modify and extend the platform</li>
+            <li>Built a system capable of running concurrent experiments with different parameters</li>
+            <li>Implemented secure data collection and storage solutions compliant with research ethics requirements</li>
           </ul>
           
-          <h3>Testimonial</h3>
-          <blockquote>
-            "Daniel's implementation of our experimental paradigms using jsPsych was exceptional. The code was well-structured, the timing precision was excellent, and the participant experience was seamless. His work significantly advanced our research program."
-            <footer>— Prof. Michael Chen, Psychology Department</footer>
-          </blockquote>
+          <h3>Research Impact</h3>
+          <p>
+            Project Planets has been used to study how people learn from experience and make decisions under risk. The platform has enabled researchers to systematically investigate:
+          </p>
+          <ul>
+            <li>How experience shapes risk perception and decision-making</li>
+            <li>The relationship between explicit knowledge and behavior</li>
+            <li>Individual differences in learning patterns and risk tolerance</li>
+            <li>The effects of different reward schedules on behavior</li>
+          </ul>
+          
+          <h3>Skills Demonstrated</h3>
+          <ul>
+            <li>Advanced JavaScript development</li>
+            <li>Custom plugin development for jsPsych</li>
+            <li>Docker containerization and deployment</li>
+            <li>UI/UX design for research applications</li>
+            <li>Data collection and management systems</li>
+            <li>Secure web application development</li>
+            <li>Technical documentation for diverse audiences</li>
+          </ul>
         </div>
 
         <!-- Project Navigation -->
