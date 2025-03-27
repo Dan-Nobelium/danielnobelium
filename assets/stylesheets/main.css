@@ -260,25 +260,108 @@ p a {
   ========================================
 */
 
+/* Updated header styles */
+.primary-header {
+  background-color: #293f50;
+  padding: 20px 0;
+  border-bottom: 4px solid #648880;
+  position: relative; /* Not fixed/sticky */
+  width: 100%;
+  z-index: 100;
+}
+
 .logo {
-  border-top: 4px solid #648880;
   float: left;
   font-size: 48px;
   font-weight: 100;
   letter-spacing: .5px;
   line-height: 44px;
-  padding: 40px 0 22px 0;
+  padding: 20px 0 22px 0;
   text-transform: uppercase;
+  border-top: 4px solid #648880;
 }
+
 .tagline {
   margin: 66px 0 22px 0;
   text-align: right;
+  color: #fff; /* Improved visibility */
 }
+
 .primary-nav {
   font-size: 14px;
   font-weight: 400;
   letter-spacing: .5px;
   text-transform: uppercase;
+  text-align: right;
+}
+
+.primary-nav a {
+  color: #fff;
+  margin-left: 20px;
+  padding: 5px 10px;
+  border-radius: 3px;
+  transition: background-color 0.3s ease;
+}
+
+.primary-nav a:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  color: #fff;
+}
+
+/* Media queries for responsive header */
+@media (max-width: 960px) {
+  .container,
+  .grid {
+    width: 100%;
+  }
+  
+  .row,
+  .row-alt {
+    min-width: 0;
+  }
+  
+  .primary-header {
+    padding: 15px 0;
+  }
+  
+  .logo {
+    font-size: 36px;
+    padding: 15px 0;
+  }
+  
+  .tagline {
+    margin: 40px 0 22px 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .primary-header {
+    text-align: center;
+  }
+  
+  .logo {
+    float: none;
+    display: block;
+    margin: 0 auto;
+    font-size: 30px;
+    padding: 10px 0;
+  }
+  
+  .tagline {
+    text-align: center;
+    margin: 15px 0;
+  }
+  
+  .primary-nav {
+    text-align: center;
+    margin: 15px 0 0 0;
+  }
+  
+  .primary-nav a {
+    margin: 0 8px;
+    padding: 4px 8px;
+    font-size: 13px;
+  }
 }
 
 /*
