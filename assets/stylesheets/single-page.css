@@ -338,18 +338,16 @@ body {
 }
   
 .contact-content {
-  display: flex;
-  justify-content: space-between;
-  gap: 40px;
   max-width: 1000px;
   margin: 0 auto;
 }
   
 .contact-info {
-  flex: 1;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 30px;
+  margin: 0 auto; /* Center the grid */
+  max-width: 900px; /* Control the maximum width */
 }
   
 .contact-item {
@@ -386,11 +384,6 @@ body {
   text-decoration: underline;
 }
   
-.contact-cta {
-  display: flex;
-  justify-content: center;
-  margin-top: 40px;
-}
   
 /* Footer */
 .primary-footer {
