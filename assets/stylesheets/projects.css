@@ -6,6 +6,32 @@
   margin: 2rem 0;
 }
 
+/* Row alt styling to match main page's blue theme */
+.row-alt {
+  background: #293f50; /* Dark blue background to match main page */
+  padding: 44px 0 22px 0;
+}
+
+/* Lead container styling to match main page */
+.lead {
+  text-align: center;
+}
+
+.lead h1 {
+  color: #fff; /* White text for better contrast on dark blue */
+  font-size: 36px;
+  line-height: 44px;
+  margin-bottom: 22px;
+}
+
+.lead p {
+  font-size: 21px;
+  line-height: 33px;
+  color: #fff; /* White text for better contrast on dark blue */
+  opacity: 0.9;
+}
+
+/* Project card styling */
 .project-card {
   border: 1px solid #e1e1e1;
   border-radius: 5px;
@@ -14,6 +40,7 @@
   display: flex;
   flex-direction: column;
   height: 100%;
+  background-color: #fff;
 }
 
 .project-card:hover {
@@ -39,6 +66,7 @@
   margin-top: 0;
   margin-bottom: 0.5rem;
   font-size: 1.5rem;
+  color: #648880;
 }
 
 .project-subtitle {
@@ -55,6 +83,8 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
   flex-grow: 1;
+  color: #888;
+  line-height: 1.5;
 }
 
 .tech-badges {
@@ -65,10 +95,10 @@
 }
 
 .tech-badge {
-  background-color: #f0f0f0;
-  color: #333;
+  background-color: #f0f5f4;
+  color: #648880;
   padding: 0.25rem 0.5rem;
-  border-radius: 3px;
+  border-radius: 20px;
   font-size: 0.8rem;
 }
 
@@ -89,10 +119,13 @@
   transition: background-color 0.3s ease;
   min-width: 150px;
   text-align: center;
+  font-weight: 400;
+  letter-spacing: .5px;
+  text-transform: uppercase;
 }
 
 .project-link:hover {
-  background-color: #4e5066;
+  background-color: #5a7a73;
 }
 
 /* Social links in footer */
@@ -110,9 +143,52 @@
   text-decoration: underline;
 }
 
+/* Row styling for content */
+.row {
+  background: #fff;
+  padding: 66px 0 44px 0;
+}
+
+/* Make footer look consistent with main page */
+.primary-footer {
+  color: #648880;
+  font-size: 14px;
+  padding-bottom: 44px;
+  padding-top: 44px;
+}
+
+.primary-footer small {
+  float: left;
+  font-weight: 400;
+}
+
 /* Media queries */
 @media (max-width: 768px) {
   .projects-grid {
     grid-template-columns: 1fr;
+  }
+  
+  .lead h1 {
+    font-size: 28px;
+    line-height: 36px;
+  }
+  
+  .lead p {
+    font-size: 18px;
+    line-height: 28px;
+  }
+}
+
+@media (max-width: 480px) {
+  .project-card {
+    margin-bottom: 1.5rem;
+  }
+  
+  .row {
+    padding: 44px 0 22px 0;
+  }
+  
+  .row-alt {
+    padding: 33px 0 11px 0;
   }
 }
