@@ -327,41 +327,29 @@
       <i class="fas fa-arrow-up"></i>
     </a>
 
-    <!-- Script for smooth scrolling and back to top button -->
-    <script>
-      // Smooth scrolling for anchor links
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-          e.preventDefault();
-          
-          document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
-          });
-        });
+    // Script for smooth scrolling and back to top button
+<script>
+  // Smooth scrolling for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      
+      document.querySelector(this.getAttribute('href')).scrollIntoView({
+        behavior: 'smooth'
       });
-      
-      // Show/hide back to top button
-      const backToTopButton = document.getElementById('backToTop');
-      
-      window.addEventListener('scroll', () => {
-        if (window.pageYOffset > 300) {
-          backToTopButton.classList.add('visible');
-        } else {
-          backToTopButton.classList.remove('visible');
-        }
-      });
-      
-      // Make header sticky on scroll
-      const header = document.querySelector('.primary-header');
-      const headerOffset = header.offsetTop;
-      
-      window.addEventListener('scroll', () => {
-        if (window.pageYOffset > headerOffset) {
-          header.classList.add('sticky');
-        } else {
-          header.classList.remove('sticky');
-        }
-      });
-    </script>
+    });
+  });
+  
+  // Show/hide back to top button
+  const backToTopButton = document.getElementById('backToTop');
+  
+  window.addEventListener('scroll', () => {
+    if (window.pageYOffset > 300) {
+      backToTopButton.classList.add('visible');
+    } else {
+      backToTopButton.classList.remove('visible');
+    }
+  });
+</script>
   </body>
 </html>
