@@ -11,6 +11,9 @@
   border-radius: 5px;
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .project-card:hover {
@@ -27,6 +30,9 @@
 
 .project-content {
   padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }
 
 .project-title {
@@ -48,6 +54,7 @@
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  flex-grow: 1;
 }
 
 .tech-badges {
@@ -65,6 +72,13 @@
   font-size: 0.8rem;
 }
 
+/* Project link styling with centering */
+.project-link-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+}
+
 .project-link {
   display: inline-block;
   padding: 0.5rem 1rem;
@@ -73,6 +87,8 @@
   text-decoration: none;
   border-radius: 4px;
   transition: background-color 0.3s ease;
+  min-width: 150px;
+  text-align: center;
 }
 
 .project-link:hover {
