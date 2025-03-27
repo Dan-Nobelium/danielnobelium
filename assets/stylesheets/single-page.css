@@ -28,9 +28,6 @@ body {
   margin-bottom: 50px;
 }
 
-/* Removed sticky header styles */
-/* The primary-header will now use styles from main.css only */
-
 /* Hero section */
 .hero-section {
   background: linear-gradient(to right, #293f50, #416785);
@@ -269,55 +266,70 @@ body {
   font-size: 0.9rem;
 }
 
-/* Skills section */
+/* Skills section - NEW TAG-BASED STYLING */
 .skills-section {
   background-color: #f9f9f9;
 }
 
 .skills-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 40px;
   max-width: 1100px;
   margin: 0 auto;
 }
 
-.skills-category h3 {
-  font-size: 1.4rem;
+.skills-groups {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.skills-group {
+  background-color: white;
+  border-radius: 8px;
+  padding: 25px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.skills-group h3 {
+  font-size: 1.2rem;
   color: #333;
   margin-bottom: 20px;
-  text-align: center;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #648880;
 }
 
-.skills-list {
+.skills-tags {
   display: flex;
-  flex-direction: column;
-  gap: 20px;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
-.skill-item {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.skill-name {
+/* Different tag styles based on proficiency */
+.skill-tag {
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.95rem;
   font-weight: 400;
-  color: #333;
+  transition: transform 0.2s ease;
 }
 
-.skill-bar {
-  height: 10px;
-  background-color: #e0e0e0;
-  border-radius: 5px;
-  overflow: hidden;
+.skill-tag:hover {
+  transform: translateY(-2px);
 }
 
-.skill-level {
-  height: 100%;
+.primary-skill {
   background-color: #648880;
-  border-radius: 5px;
-  transition: width 1s ease;
+  color: white;
+}
+
+.secondary-skill {
+  background-color: rgba(100, 136, 128, 0.2);
+  color: #293f50;
+}
+
+.additional-skill {
+  background-color: #f0f5f4;
+  color: #293f50;
+  border: 1px solid #e0e6e4;
 }
 
 /* Contact section */
@@ -461,6 +473,10 @@ body {
   
   .contact-content {
     flex-direction: column;
+  }
+  
+  .skills-groups {
+    grid-template-columns: 1fr;
   }
 }
 
