@@ -16,11 +16,11 @@
         <a href="../index.html">Dan<br> Noble</a>
       </h1>
 
-      <nav class="nav primary-nav">
-        <a href="../index.html">Home</a>
-        <a href="../index.html#education">Education</a>
-        <a href="../projects.html">Projects</a>
-        <a href="../index.html#contact">Contact</a>
+      <nav class="nav primary-nav" style="text-align: center; display: block; margin: 25px auto 0; float: none; width: 100%;">
+        <a href="../index.html" style="margin: 0 15px;">Home</a>
+        <a href="../index.html#education" style="margin: 0 15px;">Education</a>
+        <a href="../projects.html" style="margin: 0 15px;">Projects</a>
+        <a href="../index.html#contact" style="margin: 0 15px;">Contact</a>
       </nav>
     </header>
 
@@ -54,7 +54,7 @@
         </div>
 
         <!-- Project Navigation -->
-        <nav class="project-nav card">
+        <nav class="project-nav" style="background-color: #fff; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
           <a href="#overview">Overview</a>
           <a href="#challenge">Challenge</a>
           <a href="#approach">Approach</a>
@@ -64,18 +64,18 @@
         </nav>
 
         <!-- Overview Section -->
-        <div id="overview" class="project-section card card-inner">
+        <div id="overview" class="project-section" style="background-color: #fff; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); padding: 25px; margin-bottom: 25px;">
           <h2>Overview</h2>
           <p>
-            Developed a comprehensive Excel-based solution for the University of New England (UNE) to help researchers identify eligible journals under various Read and Publish agreements. This tool consolidates data from multiple sources and provides an easy-to-use interface for researchers to determine which publishing agreements apply to specific journals.
+            As Software Project Manager for the University of New England (UNE) from March 2024 to June 2024, I developed a comprehensive Excel-based solution to help researchers identify eligible journals under various Read and Publish agreements. This tool consolidates data from multiple sources and provides an easy-to-use interface for researchers to determine which publishing agreements apply to specific journals.
           </p>
           <p>
-            The final solution is used on the official UNE website, where researchers can download the tool to check journal eligibility for their publishing needs. It transforms a complex data management challenge into an accessible, user-friendly resource.
+            The solution streamlined journal management workload from 40 hours down to just 2, reducing publication research time by 80%. It's now used on the official UNE website, where researchers can download the tool to check journal eligibility for their publishing needs.
           </p>
         </div>
 
         <!-- Challenge Section -->
-        <div id="challenge" class="project-section card card-inner">
+        <div id="challenge" class="project-section" style="background-color: #fff; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); padding: 25px; margin-bottom: 25px;">
           <h2>Challenge</h2>
           <p>
             UNE faced significant challenges in helping researchers navigate publishing options:
@@ -86,11 +86,12 @@
             <li>Regular updates were required as publisher agreements changed and new journals were added</li>
             <li>Researchers needed simple access to determine journal eligibility for publishing agreements</li>
             <li>The solution needed to be maintainable by UNE library staff without specialized technical knowledge</li>
+            <li>Manual data processing was taking staff approximately 40 hours per update cycle</li>
           </ul>
         </div>
 
         <!-- Approach Section -->
-        <div id="approach" class="project-section card card-inner">
+        <div id="approach" class="project-section" style="background-color: #fff; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); padding: 25px; margin-bottom: 25px;">
           <h2>Approach</h2>
           <p>
             I implemented a comprehensive solution using PowerQuery and Excel:
@@ -108,52 +109,87 @@
             <li>Created a consolidated database with proper relationships between data sources</li>
             <li>Built an automated document generation system that creates a clean, user-friendly Excel file</li>
             <li>Designed detailed documentation for UNE staff to maintain the system</li>
+            <li>Established a one-click solution for processing scientific journal data, eliminating manual data cleaning processes</li>
           </ol>
         </div>
 
         <!-- Code Samples Section -->
-        <div id="code" class="project-section card card-inner">
+        <div id="code" class="project-section" style="background-color: #fff; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); padding: 25px; margin-bottom: 25px;">
           <h2>Code Samples</h2>
           
           <h3>PowerQuery Data Integration Pipeline</h3>
           <div class="code-block">
             <pre><code class="language-powerquery">
-// Main file detection and processing logic
+// Main file detection and processing logic for CAUL data
 let
-    // Get all CAUL files in the data directory
-    Source = Folder.Files("./CAUL"),
-    
-    // Filter for just the Excel files
-    ExcelFiles = Table.SelectRows(Source, each Text.EndsWith([Extension], ".xlsx") or Text.EndsWith([Extension], ".xls")),
-    
-    // Filter out hidden files (those starting with ~)
-    NonHiddenFiles = Table.SelectRows(ExcelFiles, each not Text.StartsWith([Name], "~")),
-    
-    // Sort by date to get most recent files first
-    SortedFiles = Table.Sort(NonHiddenFiles, {{"Date modified", Order.Descending}}),
-    
-    // Get the most recent file
-    MostRecentFile = if Table.IsEmpty(SortedFiles) then error "No CAUL files found" else SortedFiles{0},
-    
-    // Extract the file content
-    FileContent = MostRecentFile[Content],
-    
-    // Load as Excel workbook
-    Workbook = Excel.Workbook(FileContent),
-    
-    // Find sheets containing agreement data
-    AgreementSheets = Table.SelectRows(Workbook, each [Kind] = "Sheet" and Text.Contains([Name], "Agreement")),
-    
-    // Process each agreement sheet
-    ProcessedSheets = Table.AddColumn(AgreementSheets, "ProcessedData", each ProcessAgreementSheet([Data])),
-    
-    // Combine all processed sheets
-    CombinedData = Table.Combine(ProcessedSheets[ProcessedData]),
-    
-    // Clean and standardize data
-    CleanedData = CleanJournalData(CombinedData)
+    // Gets all files in the CAUL data directory
+    Source = Folder.Files(FILENAME & "\data\CAUL"),
+
+    // Filtered out non-relevant files
+    #"Filtered rows" = Table.SelectRows(Source, each not Text.StartsWith([Name], "~$") and [Extension] = ".xlsx" and [Attributes]?[Hidden]? <> true),
+
+    // Sort rows by most recently modified
+    #"Sorted rows" = Table.Sort(#"Filtered rows", {{"Date modified", Order.Descending}}),
+
+    // Keep the top row
+    #"Kept top rows" = Table.FirstN(#"Sorted rows", 1),
+
+    // Opens the workbook and gets the data from the desired table
+    #"Open workbook" = Table.SelectRows(Table.RemoveColumns(Table.AddColumn(#"Kept top rows", "Data", each Excel.Workbook(File.Contents([Folder Path] & [Name]))), {"Folder Path", "Attributes", "Date created", "Date modified", "Date accessed", "Extension", "Name", "Content"}){0}[Data], each [Kind] = "Sheet" and [Hidden] <> true){0}[Data],
+
+    // Uses the first row as the table headers
+    #"Promoted Headers" = Table.PromoteHeaders(#"Open workbook", [PromoteAllScalars=true]),
+
+    // Remove any rows where the journal name is null
+    #"Remove null journal rows" = Table.SelectRows(#"Promoted Headers", each [Journal Name] <> null),
+
+    // Applies the correct data types to each column
+    #"Changed Type" = Table.TransformColumnTypes(#"Remove null journal rows",{{"Journal Name", type text}, {"Included in CAUL OA agreement?", type text}, {"Notes", type text}, {"Publisher Name", type text}, {"Last Updated", type date}, {"ISSN", type text}, {"eISSN", type text}, {"Journal Website", type text}, {"Journal Type", type text}, {"Journal Abbreviation", type text}, {"Imprint Name", type text}, {"Included in CAUL discount scheme?", type text}}),
+
+    // Conditionally adds the string "Included in CAUL discount scheme" to the Notes column
+    #"Add discount scheme note" = Table.TransformColumns(Table.ReplaceValue(Table.ReplaceValue(#"Changed Type", null, " ", Replacer.ReplaceValue, {"Notes"}), each [Notes], each if [#"Included in CAUL discount scheme?"] = "Yes" then [Notes] & " Included in CAUL discount scheme" else [Notes], Replacer.ReplaceText, {"Notes"}), {{"Notes", Text.Trim, type text}}),
+
+    // Condenses all ISSN for a single journal into one row
+    #"Unique rows by ISSN" = Table.ExpandListColumn(Table.TransformColumns(Table.TransformColumns(Table.CombineColumns(#"Add discount scheme note", {"ISSN", "eISSN"}, Combiner.CombineTextByDelimiter(" ", QuoteStyle.None), "ISSN"), {{"ISSN", Text.Trim, type text}}), {{"ISSN", Splitter.SplitTextByDelimiter(" ", QuoteStyle.Csv), let itemType = (type nullable text) meta [Serialized.Text = true] in type {itemType}}}), "ISSN"),
+
+    // Reorders the columns
+    #"Reordered Columns" = Table.ReorderColumns(#"Unique rows by ISSN",{"Journal Name", "ISSN", "Included in CAUL OA agreement?", "Notes", "Publisher Name", "Last Updated", "Journal Website", "Journal Type", "Journal Abbreviation", "Imprint Name", "Included in CAUL discount scheme?"}),
+
+    // Remove unrequired columns
+    #"Removed Columns" = Table.RemoveColumns(#"Reordered Columns",{"Last Updated", "Journal Website", "Journal Abbreviation", "Imprint Name", "Included in CAUL discount scheme?"}),
+
+    // Rename columns to match original tool
+    #"Renamed Columns" = Table.RenameColumns(#"Removed Columns",{{"Included in CAUL OA agreement?", "Included in R&P agreement"}}),
+
+    // Replace null values with empty strings
+    #"Replaced Value" = Table.ReplaceValue(#"Renamed Columns",null,"",Replacer.ReplaceValue,{"Journal Type"})
 in
-    CleanedData
+    #"Replaced Value"
+            </code></pre>
+          </div>
+          
+          <h3>Final Data Consolidation</h3>
+          <div class="code-block">
+            <pre><code class="language-powerquery">
+// Final Data Integration - Joining CAUL, ERA, and SCIMAGOJR data
+let
+    // First join (left join ERA to CAUL data)
+    Source = Table.NestedJoin(CAUL, {"ISSN"}, ERA, {"ISSN"}, "ERA", JoinKind.LeftOuter),
+
+    // Second join (left join SCIMAGOJR to CAUL data)
+    #"Merged Queries" = Table.NestedJoin(Source, {"ISSN"}, SCIMAGOJR, {"Issn"}, "SCIMAGOJR", JoinKind.LeftOuter),
+
+    // expand the merged data
+    #"Expanded ERA" = Table.ExpandTableColumn(#"Merged Queries", "ERA", {"FoR Code/Name"}, {"FoR Code/Name"}),
+    #"Expanded SCIMAGOJR" = Table.ExpandTableColumn(#"Expanded ERA", "SCIMAGOJR", {"SJR", "SJR Best Quartile", "H index", "Categories", "Areas"}, {"SJR", "SJR Best Quartile", "H index", "Categories", "Areas"}),
+
+    // Sort the journals by lexicographical order
+    #"Sorted Rows" = Table.Sort(#"Expanded SCIMAGOJR",{{"Journal Name", Order.Ascending}}),
+
+    // Groups the data by the journal name
+    #"Grouped Rows" = Table.Group(#"Sorted Rows", {"Journal Name"}, {{"ISSN", each Text.Combine([ISSN], "; "), type nullable text}, {"Included in R&P agreement", each List.Max([#"Included in R&P agreement"]), type nullable text}, {"Notes", each List.Max([Notes]), type nullable text}, {"Publisher Name", each List.Max([Publisher Name]), type nullable text}, {"Journal Type", each List.Max([Journal Type]), type nullable text}, {"FoR Code/Name", each List.Max([#"FoR Code/Name"]), type nullable text}, {"SJR Best Quartile", each List.Max([SJR Best Quartile]), type nullable text}, {"SJR", each List.Max([SJR]), type nullable number}, {"H index", each List.Max([H index]), type nullable number}, {"SJR Categories", each List.Max([Categories]), type nullable text}, {"SJR Areas", each List.Max([Areas]), type nullable text}})
+in
+    #"Grouped Rows"
             </code></pre>
           </div>
           
@@ -161,44 +197,36 @@ in
           <div class="code-block">
             <pre><code class="language-vba">
 ' VBA code to generate the final document
-Sub GenerateNewDocument()
-    ' Update status indicator
-    Range("B2").Value = "Refreshing"
-    Range("B2").Interior.Color = RGB(255, 0, 0)
+Sub GenerateDocument()
+'
+' Generates a copy of the refreshed data to the current directory
+'
+    Utils.RefreshIndicator ("B2")
+    Utils.RefreshConnections
+    Utils.RefreshIndicator ("B2")
+    ThisWorkbook.Save ' Save the current file before creating a new one
+    Utils.DeleteQueries
+    Utils.DeleteSheet ("Control Panel")
+    Utils.SaveCopy
+End Sub
+
+Sub SaveCopy()
+'
+' Saves the workbook in the current directory with a new name
+'
+    Application.DisplayAlerts = False ' disable alerts to prevent the user needing to click okay to saving a non-macro file
     
-    ' Refresh all Power Query connections
-    ActiveWorkbook.RefreshAll
+    fname = Format(Date, "yyyy-mm-dd") & " Read and Publish Journal Tool - UNE.xlsx" ' A string containing the desired filename with optimal date format for sorting
+    ActiveWorkbook.SaveAs ThisWorkbook.Path & "\" & fname, xlWorkbookDefault
     
-    ' Wait for refresh to complete
-    Application.Wait Now + TimeValue("00:00:03")
-    While Not Application.CalculationState = xlDone
-        DoEvents
-    Wend
-    
-    ' Generate filename with current date
-    Dim newFileName As String
-    newFileName = Format(Date, "yyyy-mm-dd") & " Read and Publish Journal Tool - UNE.xlsx"
-    
-    ' Switch to Final worksheet
-    Sheets("Final").Activate
-    
-    ' Copy the Final worksheet to a new workbook
-    Sheets("Final").Copy
-    
-    ' Save the new workbook
-    ActiveWorkbook.SaveAs Filename:=ThisWorkbook.Path & "\" & newFileName, _
-        FileFormat:=xlOpenXMLWorkbook
-    
-    ' Update status indicator
-    Sheets("Control Panel").Range("B2").Value = "Refreshed @ " & Format(Now, "yyyy-mm-dd")
-    Sheets("Control Panel").Range("B2").Interior.Color = RGB(0, 192, 80)
+    Application.DisplayAlerts = True
 End Sub
             </code></pre>
           </div>
         </div>
 
         <!-- Demo Section -->
-        <div id="demo" class="project-section card card-inner">
+        <div id="demo" class="project-section" style="background-color: #fff; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); padding: 25px; margin-bottom: 25px;">
           <h2>Demo</h2>
           <p>
             The Read and Publish Journal Tool helps UNE researchers easily determine if a journal is covered by an existing agreement:
@@ -226,11 +254,12 @@ End Sub
             <li>They open the Database tool and click "Generate New Document"</li>
             <li>The system automatically processes all data and creates a new Excel file</li>
             <li>The new file is uploaded to the UNE website for researchers to access</li>
+            <li>The entire process takes about 2 hours, compared to the previous 40-hour manual workflow</li>
           </ol>
         </div>
 
         <!-- Outcomes Section -->
-        <div id="outcomes" class="project-section card card-inner">
+        <div id="outcomes" class="project-section" style="background-color: #fff; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); padding: 25px; margin-bottom: 25px;">
           <h2>Outcomes</h2>
           
           <h3>Key Achievements</h3>
@@ -238,10 +267,11 @@ End Sub
             <li>Successfully implemented on the official UNE website for campus-wide use</li>
             <li>Consolidated over 30,000 journal entries from multiple publishers</li>
             <li>Reduced data update process from days to minutes</li>
+            <li>Streamlined journal management workload from 40 hours down to just 2 hours</li>
+            <li>Reduced publication research time by 80% for researchers</li>
             <li>Eliminated manual cross-referencing errors</li>
             <li>Created a maintainable solution with comprehensive documentation</li>
             <li>Provided researchers with clear guidance on eligible publishing options</li>
-            <li>Streamlined journal management workload from 40 hours down to just 2</li>
           </ul>
           
           <h3>Value Delivered</h3>
@@ -249,7 +279,7 @@ End Sub
             This tool has transformed how UNE researchers approach journal selection and publishing decisions. It has helped scholars maximize institutional resources by identifying opportunities to publish in open access journals at no additional cost through the university's existing agreements.
           </p>
           <p>
-            The automation has also freed up significant staff time that was previously spent manually updating and cross-referencing journal lists, allowing library staff to focus on providing direct support to researchers.
+            The automation has freed up significant staff time that was previously spent manually updating and cross-referencing journal lists, allowing library staff to focus on providing direct support to researchers. The one-click solution for processing scientific journal data eliminated the need for manual handling and formatting of data being imported from scientific journal aggregation services.
           </p>
         </div>
 
@@ -283,3 +313,25 @@ End Sub
     
     <script>
       // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          
+          document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+          });
+        });
+      });
+      
+      // Show/hide back to top button
+      window.addEventListener('scroll', function() {
+        const backToTopButton = document.querySelector('.back-to-top');
+        if (window.pageYOffset > 300) {
+          backToTopButton.style.display = 'flex';
+        } else {
+          backToTopButton.style.display = 'none';
+        }
+      });
+    </script>
+  </body>
+</html>
