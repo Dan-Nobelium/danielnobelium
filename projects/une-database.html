@@ -2,7 +2,8 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>UNE Database Tracker - Daniel Nobelium</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UNE Database Tracker - Dan Noble</title>
     <link rel="stylesheet" href="../assets/stylesheets/main.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,300,400">
     <link rel="stylesheet" href="../assets/stylesheets/project-detail.css">
@@ -12,16 +13,14 @@
     <!-- Header -->
     <header class="primary-header container group">
       <h1 class="logo">
-        <a href="../index.html">Daniel<br> Nobelium</a>
+        <a href="../index.html">Dan<br> Noble</a>
       </h1>
-
-      <h3 class="tagline">Software Engineer</h3>
 
       <nav class="nav primary-nav">
         <a href="../index.html">Home</a>
-        <a href="../education.html">Education</a>
+        <a href="../index.html#education">Education</a>
         <a href="../projects.html">Projects</a>
-        <a href="../contact.html">Contact</a>
+        <a href="../index.html#contact">Contact</a>
       </nav>
     </header>
 
@@ -37,7 +36,10 @@
           <span class="tech-badge">Data Modeling</span>
           <span class="tech-badge">Process Automation</span>
         </div>
-        <a href="https://www.une.edu.au/library/researchers/publishing-agreements-and-open-access-initiatives/read-and-publish-agreements" class="github-link" target="_blank">View on UNE Website</a>
+        <div style="display: flex; gap: 15px;">
+          <a href="https://github.com/Dan-Nobelium/Read-And-Publish-Tool" class="github-link" target="_blank">View on GitHub</a>
+          <a href="https://www.une.edu.au/library/researchers/publishing-agreements-and-open-access-initiatives/read-and-publish-agreements" class="github-link" target="_blank">View Live</a>
+        </div>
       </div>
     </div>
 
@@ -52,7 +54,7 @@
         </div>
 
         <!-- Project Navigation -->
-        <nav class="project-nav">
+        <nav class="project-nav card">
           <a href="#overview">Overview</a>
           <a href="#challenge">Challenge</a>
           <a href="#approach">Approach</a>
@@ -62,7 +64,7 @@
         </nav>
 
         <!-- Overview Section -->
-        <div id="overview" class="project-section">
+        <div id="overview" class="project-section card card-inner">
           <h2>Overview</h2>
           <p>
             Developed a comprehensive Excel-based solution for the University of New England (UNE) to help researchers identify eligible journals under various Read and Publish agreements. This tool consolidates data from multiple sources and provides an easy-to-use interface for researchers to determine which publishing agreements apply to specific journals.
@@ -73,7 +75,7 @@
         </div>
 
         <!-- Challenge Section -->
-        <div id="challenge" class="project-section">
+        <div id="challenge" class="project-section card card-inner">
           <h2>Challenge</h2>
           <p>
             UNE faced significant challenges in helping researchers navigate publishing options:
@@ -88,7 +90,7 @@
         </div>
 
         <!-- Approach Section -->
-        <div id="approach" class="project-section">
+        <div id="approach" class="project-section card card-inner">
           <h2>Approach</h2>
           <p>
             I implemented a comprehensive solution using PowerQuery and Excel:
@@ -110,7 +112,7 @@
         </div>
 
         <!-- Code Samples Section -->
-        <div id="code" class="project-section">
+        <div id="code" class="project-section card card-inner">
           <h2>Code Samples</h2>
           
           <h3>PowerQuery Data Integration Pipeline</h3>
@@ -196,7 +198,7 @@ End Sub
         </div>
 
         <!-- Demo Section -->
-        <div id="demo" class="project-section">
+        <div id="demo" class="project-section card card-inner">
           <h2>Demo</h2>
           <p>
             The Read and Publish Journal Tool helps UNE researchers easily determine if a journal is covered by an existing agreement:
@@ -228,7 +230,7 @@ End Sub
         </div>
 
         <!-- Outcomes Section -->
-        <div id="outcomes" class="project-section">
+        <div id="outcomes" class="project-section card card-inner">
           <h2>Outcomes</h2>
           
           <h3>Key Achievements</h3>
@@ -239,6 +241,7 @@ End Sub
             <li>Eliminated manual cross-referencing errors</li>
             <li>Created a maintainable solution with comprehensive documentation</li>
             <li>Provided researchers with clear guidance on eligible publishing options</li>
+            <li>Streamlined journal management workload from 40 hours down to just 2</li>
           </ul>
           
           <h3>Value Delivered</h3>
@@ -263,13 +266,13 @@ End Sub
 
     <!-- Footer -->
     <footer class="primary-footer container group">
-      <small>&copy; Daniel Nobelium 2023-2025 </small>
+      <small>&copy; Dan Noble 2024-2025</small>
 
       <nav class="nav">
         <a href="../index.html">Home</a>
-        <a href="../education.html">Education</a>
+        <a href="../index.html#education">Education</a>
         <a href="../projects.html">Projects</a>
-        <a href="../contact.html">Contact</a>
+        <a href="../index.html#contact">Contact</a>
       </nav>
       
       <div class="social-links">
@@ -280,25 +283,3 @@ End Sub
     
     <script>
       // Smooth scrolling for anchor links
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-          e.preventDefault();
-          
-          document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
-          });
-        });
-      });
-      
-      // Show/hide back to top button
-      window.addEventListener('scroll', function() {
-        const backToTopButton = document.querySelector('.back-to-top');
-        if (window.pageYOffset > 300) {
-          backToTopButton.style.display = 'flex';
-        } else {
-          backToTopButton.style.display = 'none';
-        }
-      });
-    </script>
-  </body>
-</html>

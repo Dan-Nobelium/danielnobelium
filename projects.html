@@ -2,7 +2,8 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Projects - Daniel Nobelium</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - Dan Noble</title>
     <link rel="stylesheet" href="assets/stylesheets/main.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,300,400">
     <link rel="stylesheet" href="assets/stylesheets/projects.css">
@@ -12,16 +13,14 @@
     <!-- Header -->
     <header class="primary-header container group">
       <h1 class="logo">
-        <a href="index.html">Daniel<br> Nobelium</a>
+        <a href="index.html">Dan<br> Noble</a>
       </h1>
 
-      <h3 class="tagline">Software Engineer</h3>
-
-      <nav class="nav primary-nav">
-        <a href="index.html">Home</a>
-        <a href="index.html#education">Education</a>
-        <a href="projects.html">Projects</a>
-        <a href="index.html#contact">Contact</a>
+      <nav class="nav primary-nav" style="text-align: center; display: block; margin: 25px auto 0; float: none; width: 100%;">
+        <a href="index.html" style="margin: 0 15px;">Home</a>
+        <a href="index.html#education" style="margin: 0 15px;">Education</a>
+        <a href="projects.html" style="margin: 0 15px;">Projects</a>
+        <a href="index.html#contact" style="margin: 0 15px;">Contact</a>
       </nav>
     </header>
 
@@ -38,53 +37,78 @@
       <div class="container">
         <div class="projects-grid">
           <!-- UNSW jsPsych Project (1st) -->
-          <div class="project-card">
-            <img src="assets/img/jspsych-preview.jpg" alt="UNSW jsPsych Experiments" class="project-image">
+          <div class="project-card" style="background-color: #fff; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); overflow: hidden;">
+            <div class="project-image" style="width: 100%; height: 220px; overflow: hidden; position: relative; background-color: #f5f5f5;">
+              <img src="assets/img/jspsych-preview.jpg" alt="UNSW jsPsych Experiments" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0;">
+              <!-- Fallback content if image fails to load -->
+              <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: #666; font-size: 14px;">
+                <span>Behavioral Neuroscience Platform</span>
+              </div>
+            </div>
             <div class="project-content">
-              <h2 class="project-title">UNSW jsPsych Experiments</h2>
-              <h3 class="project-subtitle">Web-based Psychology Research</h3>
+              <h2 class="project-title">Behavioral Neuroscience Platform</h2>
+              <h3 class="project-subtitle">Research & Measurement Platform</h3>
               <p class="project-description">
-                Created interactive psychological experiments using jsPsych, HTML, and CSS for the University of New South Wales research department.
+                Collaborated with UNSW's Behavioral Neuroscience Lab to develop a web-based gambling behaviour measurement program with complex experimental designs. 
+                This solution reduced experiment setup time from over 20 hours to just 2, significantly enhancing research efficiency.
               </p>
               <div class="tech-badges">
                 <span class="tech-badge">jsPsych</span>
                 <span class="tech-badge">JavaScript</span>
-                <span class="tech-badge">HTML/CSS</span>
+                <span class="tech-badge">Docker</span>
+                <span class="tech-badge">JATOS</span>
               </div>
               <div class="project-link-container">
-                <a href="https://www.une.edu.au/library/researchers/publishing-agreements-and-open-access-initiatives/read-and-publish-agreements" class="github-link" target="_blank">View on UNE Website</a>
+                <a href="https://github.com/Dan-Nobelium/Project-Bookworm-Repo" class="project-link" target="_blank">View on GitHub</a>
               </div>
             </div>
           </div>
 
           <!-- UNE Database Project (2nd) -->
-          <div class="project-card">
-            <img src="assets/img/database-preview.jpg" alt="UNE Database Tracker" class="project-image">
+          <div class="project-card" style="background-color: #fff; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); overflow: hidden;">
+            <div class="project-image" style="width: 100%; height: 220px; overflow: hidden; position: relative; background-color: #f5f5f5;">
+              <img src="assets/img/database-preview.jpg" alt="UNE Journal Tool" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0;">
+              <!-- Fallback content if image fails to load -->
+              <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: #666; font-size: 14px;">
+                <span>UNE Journal Tool</span>
+              </div>
+            </div>
             <div class="project-content">
-              <h2 class="project-title">UNE Database Tracker</h2>
-              <h3 class="project-subtitle">PowerQuery & Excel Development</h3>
+              <h2 class="project-title">UNE Read and Publish Journal Tool</h2>
+              <h3 class="project-subtitle">Data Integration & Automation</h3>
               <p class="project-description">
-                Developed a comprehensive database tracking system using PowerQuery to automate data management processes for the University of New England.
+                Delivered a comprehensive PowerQuery and Excel-based solution that helps researchers identify eligible journals 
+                under various publishing agreements. This tool consolidates data from multiple sources including CAUL, ERA, and Scimago Journal Rankings.
+                Streamlined journal management workload from 40 hours down to just 2, reducing publication research time by 80%.
               </p>
               <div class="tech-badges">
                 <span class="tech-badge">PowerQuery</span>
                 <span class="tech-badge">Excel</span>
-                <span class="tech-badge">Data Analysis</span>
+                <span class="tech-badge">M Language</span>
+                <span class="tech-badge">Data Processing</span>
               </div>
-              <div class="project-link-container">
-                <a href="https://github.com/Dan-Nobelium/une-journal-tool" class="project-link" target="_blank">View on GitHub</a>
+              <div class="project-link-container" style="display: flex; gap: 10px; justify-content: center;">
+                <a href="https://github.com/Dan-Nobelium/Read-And-Publish-Tool" class="project-link" target="_blank">View on GitHub</a>
+                <a href="https://www.une.edu.au/library/researchers/publishing-agreements-and-open-access-initiatives/read-and-publish-agreements" class="project-link" target="_blank">View Live</a>
               </div>
             </div>
           </div>
 
           <!-- Generative Art Project (3rd) -->
-          <div class="project-card">
-            <img src="assets/img/genArtOne.gif" alt="Generative Artwork" class="project-image">
+          <div class="project-card" style="background-color: #fff; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); overflow: hidden;">
+            <div class="project-image" style="width: 100%; height: 220px; overflow: hidden; position: relative; background-color: #f5f5f5;">
+              <img src="assets/img/genArtOne.gif" alt="Generative Artwork" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0;">
+              <!-- Fallback content if image fails to load -->
+              <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: #666; font-size: 14px;">
+                <span>Generative Artwork</span>
+              </div>
+            </div>
             <div class="project-content">
               <h2 class="project-title">Generative Artwork</h2>
               <h3 class="project-subtitle">Creative Coding</h3>
               <p class="project-description">
                 Created interactive digital art using procedural generation algorithms and canvas manipulation.
+                Developed dynamic visualizations that respond to user input and evolve over time.
               </p>
               <div class="tech-badges">
                 <span class="tech-badge">JavaScript</span>
@@ -98,18 +122,25 @@
           </div>
 
           <!-- Discord Community Project (4th) -->
-          <div class="project-card">
-            <img src="assets/img/discord-preview.jpg" alt="Discord Community" class="project-image">
+          <div class="project-card" style="background-color: #fff; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); overflow: hidden;">
+            <div class="project-image" style="width: 100%; height: 220px; overflow: hidden; position: relative; background-color: #f5f5f5;">
+              <img src="assets/img/discord-preview.jpg" alt="Discord Community" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0;">
+              <!-- Fallback content if image fails to load -->
+              <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: #666; font-size: 14px;">
+                <span>Discord Community</span>
+              </div>
+            </div>
             <div class="project-content">
               <h2 class="project-title">Discord Community</h2>
               <h3 class="project-subtitle">Community Management & Bot Development</h3>
               <p class="project-description">
                 Built and managed a 600+ member Discord community, implementing custom bots and automation to enhance user engagement.
+                Achieved 70% member retention rate (compared to industry average of 40-45%) through interactive events and responsive moderation.
               </p>
               <div class="tech-badges">
                 <span class="tech-badge">Discord.js</span>
                 <span class="tech-badge">Node.js</span>
-                <span class="tech-badge">Community</span>
+                <span class="tech-badge">Community Management</span>
               </div>
               <div class="project-link-container">
                 <a href="https://github.com/Dan-Nobelium/discord-community" class="project-link" target="_blank">View on GitHub</a>
@@ -122,7 +153,7 @@
 
     <!-- Footer -->
     <footer class="primary-footer container group">
-      <small>&copy; Daniel Nobelium 2023-2025 </small>
+      <small>&copy; Dan Noble 2024-2025</small>
       <nav class="nav">
         <a href="index.html">Home</a>
         <a href="index.html#education">Education</a>
