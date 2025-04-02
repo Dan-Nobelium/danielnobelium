@@ -2,11 +2,12 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
+    <title>UNSW jsPsych Experiments - Dan Noble</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UNE Database Tracker - Dan Noble</title>
     <link rel="stylesheet" href="../assets/stylesheets/main.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,300,400">
     <link rel="stylesheet" href="../assets/stylesheets/project-detail.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
   </head>
 
   <body>
@@ -17,29 +18,25 @@
       </h1>
 
       <nav class="nav primary-nav" style="text-align: center; display: block; margin: 25px auto 0; float: none; width: 100%;">
-        <a href="../index.html" style="margin: 0 15px;">Home</a>
+        <a href="../index.html#home" style="margin: 0 15px;">Home</a>
         <a href="../index.html#education" style="margin: 0 15px;">Education</a>
-        <a href="../projects.html" style="margin: 0 15px;">Projects</a>
+        <a href="../index.html#skills" style="margin: 0 15px;">Skills</a>
         <a href="../index.html#contact" style="margin: 0 15px;">Contact</a>
       </nav>
     </header>
 
     <!-- Hero Banner -->
     <div class="project-hero">
-      <img src="../assets/img/database-preview.jpg" alt="UNE Database Tracker">
+      <img src="../assets/img/jspsych-preview.jpg" alt="UNSW jsPsych Experiments">
       <div class="project-hero-overlay">
-        <h1>UNE Read and Publish Journal Tool</h1>
+        <h1>Behavioral Neuroscience Platform</h1>
         <div class="tech-stack">
-          <span class="tech-badge">PowerQuery</span>
-          <span class="tech-badge">Excel</span>
-          <span class="tech-badge">M Language</span>
-          <span class="tech-badge">Data Modeling</span>
-          <span class="tech-badge">Process Automation</span>
+          <span class="tech-badge">jsPsych</span>
+          <span class="tech-badge">JavaScript</span>
+          <span class="tech-badge">Behavioral Research</span>
+          <span class="tech-badge">Docker</span>
         </div>
-        <div style="display: flex; gap: 15px;">
-          <a href="https://github.com/Dan-Nobelium/Read-And-Publish-Tool" class="github-link" target="_blank">View on GitHub</a>
-          <a href="https://www.une.edu.au/library/researchers/publishing-agreements-and-open-access-initiatives/read-and-publish-agreements" class="github-link" target="_blank">View Live</a>
-        </div>
+        <a href="https://github.com/Dan-Nobelium/Project_Planets" class="github-link" target="_blank">View on GitHub</a>
       </div>
     </div>
 
@@ -49,12 +46,12 @@
         <!-- Breadcrumbs -->
         <div class="breadcrumbs">
           <a href="../index.html">Home</a> > 
-          <a href="../projects.html">Projects</a> > 
-          UNE Read and Publish Journal Tool
+          <a href="../index.html#project-highlights">Projects</a> > 
+          Behavioral Neuroscience Platform
         </div>
 
         <!-- Project Navigation -->
-        <nav class="project-nav" style="background-color: #fff; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+        <nav class="project-nav">
           <a href="#overview">Overview</a>
           <a href="#challenge">Challenge</a>
           <a href="#approach">Approach</a>
@@ -64,229 +61,249 @@
         </nav>
 
         <!-- Overview Section -->
-        <div id="overview" class="project-section" style="background-color: #fff; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); padding: 25px; margin-bottom: 25px;">
+        <div id="overview" class="project-section">
           <h2>Overview</h2>
           <p>
-            As Software Project Manager for the University of New England (UNE) from March 2024 to June 2024, I developed a comprehensive Excel-based solution to help researchers identify eligible journals under various Read and Publish agreements. This tool consolidates data from multiple sources and provides an easy-to-use interface for researchers to determine which publishing agreements apply to specific journals.
+            Project Planets is a sophisticated JavaScript-based web application designed for conducting research on decision-making, risk assessment, and learning patterns. It presents an interactive space-themed environment where participants engage with different planets to earn rewards while managing the risk of pirate attacks.
           </p>
           <p>
-            The solution streamlined journal management workload from 40 hours down to just 2, reducing publication research time by 80%. It's now used on the official UNE website, where researchers can download the tool to check journal eligibility for their publishing needs.
+            Built using the jsPsych framework and deployed with Docker, the application provides a fully configurable platform for psychological research with detailed data collection capabilities. The experiment guides participants through multiple phases with varying reward-punishment contingencies, systematically revealing how people adapt their behavior based on experience.
+          </p>
+          <p>
+            This project showcases my abilities in both frontend development and research technology, combining clean, maintainable code with scientifically rigorous experimental design.
           </p>
         </div>
 
         <!-- Challenge Section -->
-        <div id="challenge" class="project-section" style="background-color: #fff; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); padding: 25px; margin-bottom: 25px;">
+        <div id="challenge" class="project-section">
           <h2>Challenge</h2>
           <p>
-            UNE faced significant challenges in helping researchers navigate publishing options:
+            Developing a behavioral experiment platform presented several unique challenges:
           </p>
           <ul>
-            <li>Data about eligible journals was scattered across multiple sources with no unified system</li>
-            <li>Information from the Council of Australian University Librarians (CAUL), Excellence in Research for Australia (ERA), and Scimago Journal Rankings needed integration</li>
-            <li>Regular updates were required as publisher agreements changed and new journals were added</li>
-            <li>Researchers needed simple access to determine journal eligibility for publishing agreements</li>
-            <li>The solution needed to be maintainable by UNE library staff without specialized technical knowledge</li>
-            <li>Manual data processing was taking staff approximately 40 hours per update cycle</li>
+            <li>Creating a complex interactive environment that maintains scientific control while being engaging for participants</li>
+            <li>Implementing precise timing mechanisms for stimulus presentation and response measurement</li>
+            <li>Designing a system to handle probabilistic rewards and outcomes with carefully calibrated parameters</li>
+            <li>Developing custom plugins to extend the core jsPsych functionality for specialized experiment requirements</li>
+            <li>Building a secure, scalable deployment solution that can handle concurrent participants and protect research data</li>
+            <li>Ensuring consistent behavior across different browsers and devices</li>
+            <li>Creating a flexible architecture that allows researchers to modify parameters without needing to understand the codebase</li>
           </ul>
         </div>
 
         <!-- Approach Section -->
-        <div id="approach" class="project-section" style="background-color: #fff; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); padding: 25px; margin-bottom: 25px;">
+        <div id="approach" class="project-section">
           <h2>Approach</h2>
           <p>
-            I implemented a comprehensive solution using PowerQuery and Excel:
+            My approach combined software engineering best practices with an understanding of behavioral research requirements:
           </p>
           <ol>
-            <li>Created an automated data processing system that pulls from multiple data sources:
+            <li>Built a modular architecture using JavaScript and jsPsych as the foundation</li>
+            <li>Developed custom jsPsych plugins for the specialized functionality required by the experiment, including:
               <ul>
-                <li>CAUL Read & Publish Agreements (.xlsx format)</li>
-                <li>ERA Submission Journal List (.xlsx format)</li>
-                <li>Scimago Journal Rankings (.csv format)</li>
+                <li>planet-response.js: A core plugin handling the main interactions with planets and ships</li>
+                <li>jspsych-inference-check.js: A plugin for collecting participants' inferences about relationships between stimuli</li>
+                <li>jspsych-valence-check.js: A plugin for collecting emotional responses to game elements</li>
+                <li>jspsych-html-slider-triangle.js: A custom plugin for ternary choice data collection</li>
               </ul>
             </li>
-            <li>Developed a file monitoring system to automatically detect the latest data files</li>
-            <li>Implemented robust data cleaning and transformation processes to handle inconsistencies</li>
-            <li>Created a consolidated database with proper relationships between data sources</li>
-            <li>Built an automated document generation system that creates a clean, user-friendly Excel file</li>
-            <li>Designed detailed documentation for UNE staff to maintain the system</li>
-            <li>Established a one-click solution for processing scientific journal data, eliminating manual data cleaning processes</li>
+            <li>Implemented a comprehensive Docker-based deployment system allowing for:
+              <ul>
+                <li>Easy installation on any cloud provider</li>
+                <li>Secure SSL/TLS encryption for all participant data</li>
+                <li>Integrated data storage and experiment management through JATOS</li>
+                <li>Simple file management through a dedicated file browser interface</li>
+              </ul>
+            </li>
+            <li>Created thorough documentation for both researchers and developers to ensure sustainability of the platform</li>
+            <li>Designed a flexible configuration system allowing researchers to modify experimental parameters without code changes</li>
           </ol>
         </div>
 
         <!-- Code Samples Section -->
-        <div id="code" class="project-section" style="background-color: #fff; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); padding: 25px; margin-bottom: 25px;">
+        <div id="code" class="project-section">
           <h2>Code Samples</h2>
           
-          <h3>PowerQuery Data Integration Pipeline</h3>
+          <h3>Custom Planet Response Plugin</h3>
           <div class="code-block">
-            <pre><code class="language-powerquery">
-// Main file detection and processing logic for CAUL data
-let
-    // Gets all files in the CAUL data directory
-    Source = Folder.Files(FILENAME & "\data\CAUL"),
-
-    // Filtered out non-relevant files
-    #"Filtered rows" = Table.SelectRows(Source, each not Text.StartsWith([Name], "~$") and [Extension] = ".xlsx" and [Attributes]?[Hidden]? <> true),
-
-    // Sort rows by most recently modified
-    #"Sorted rows" = Table.Sort(#"Filtered rows", {{"Date modified", Order.Descending}}),
-
-    // Keep the top row
-    #"Kept top rows" = Table.FirstN(#"Sorted rows", 1),
-
-    // Opens the workbook and gets the data from the desired table
-    #"Open workbook" = Table.SelectRows(Table.RemoveColumns(Table.AddColumn(#"Kept top rows", "Data", each Excel.Workbook(File.Contents([Folder Path] & [Name]))), {"Folder Path", "Attributes", "Date created", "Date modified", "Date accessed", "Extension", "Name", "Content"}){0}[Data], each [Kind] = "Sheet" and [Hidden] <> true){0}[Data],
-
-    // Uses the first row as the table headers
-    #"Promoted Headers" = Table.PromoteHeaders(#"Open workbook", [PromoteAllScalars=true]),
-
-    // Remove any rows where the journal name is null
-    #"Remove null journal rows" = Table.SelectRows(#"Promoted Headers", each [Journal Name] <> null),
-
-    // Applies the correct data types to each column
-    #"Changed Type" = Table.TransformColumnTypes(#"Remove null journal rows",{{"Journal Name", type text}, {"Included in CAUL OA agreement?", type text}, {"Notes", type text}, {"Publisher Name", type text}, {"Last Updated", type date}, {"ISSN", type text}, {"eISSN", type text}, {"Journal Website", type text}, {"Journal Type", type text}, {"Journal Abbreviation", type text}, {"Imprint Name", type text}, {"Included in CAUL discount scheme?", type text}}),
-
-    // Conditionally adds the string "Included in CAUL discount scheme" to the Notes column
-    #"Add discount scheme note" = Table.TransformColumns(Table.ReplaceValue(Table.ReplaceValue(#"Changed Type", null, " ", Replacer.ReplaceValue, {"Notes"}), each [Notes], each if [#"Included in CAUL discount scheme?"] = "Yes" then [Notes] & " Included in CAUL discount scheme" else [Notes], Replacer.ReplaceText, {"Notes"}), {{"Notes", Text.Trim, type text}}),
-
-    // Condenses all ISSN for a single journal into one row
-    #"Unique rows by ISSN" = Table.ExpandListColumn(Table.TransformColumns(Table.TransformColumns(Table.CombineColumns(#"Add discount scheme note", {"ISSN", "eISSN"}, Combiner.CombineTextByDelimiter(" ", QuoteStyle.None), "ISSN"), {{"ISSN", Text.Trim, type text}}), {{"ISSN", Splitter.SplitTextByDelimiter(" ", QuoteStyle.Csv), let itemType = (type nullable text) meta [Serialized.Text = true] in type {itemType}}}), "ISSN"),
-
-    // Reorders the columns
-    #"Reordered Columns" = Table.ReorderColumns(#"Unique rows by ISSN",{"Journal Name", "ISSN", "Included in CAUL OA agreement?", "Notes", "Publisher Name", "Last Updated", "Journal Website", "Journal Type", "Journal Abbreviation", "Imprint Name", "Included in CAUL discount scheme?"}),
-
-    // Remove unrequired columns
-    #"Removed Columns" = Table.RemoveColumns(#"Reordered Columns",{"Last Updated", "Journal Website", "Journal Abbreviation", "Imprint Name", "Included in CAUL discount scheme?"}),
-
-    // Rename columns to match original tool
-    #"Renamed Columns" = Table.RenameColumns(#"Removed Columns",{{"Included in CAUL OA agreement?", "Included in R&P agreement"}}),
-
-    // Replace null values with empty strings
-    #"Replaced Value" = Table.ReplaceValue(#"Renamed Columns",null,"",Replacer.ReplaceValue,{"Journal Type"})
-in
-    #"Replaced Value"
-            </code></pre>
+            <pre><code class="language-javascript">
+// Example from the custom planet-response-command.js plugin
+let planet_ship = {
+  type: "planet-response-command",
+  show_ship: true,
+  prompt: planet_labels,
+  stimulus: planet_list,
+  stimulus_select: stim_selector_highlight,
+  ship_stimulus: ship_list,
+  reset_planet_wait: reset_planet_wait_const,
+  shield_charging_time: shield_charging_time_const,
+  ship_attack_time: ship_attack_time_const,
+  ship_attack_effect: get_indexed_constant_array('ship_attack_effect'),
+  show_whether_shield_blocked_attack_or_bonus:
+    show_whether_shield_blocked_attack_or_bonus,
+  block_duration: block_duration,
+  probability_trade: get_indexed_constant_array('probability_trade'),
+  probability_ship: get_indexed_constant_array('probability_ship'),
+  probability_shield: get_indexed_constant_array('probability_shield'),
+  trade_outcomes: get_indexed_constant_array('trade_outcome_set'),
+  ship_outcomes: get_indexed_constant_array('ship_emergence_set'),
+  shield_outcomes: get_indexed_constant_array('shield_available_set'),
+  attack_images: get_indexed_constant_array('attack_img'),
+  image_paths_to_preload: get_indexed_constant_array('attack_img_path'),
+  attack_text_colours: get_indexed_constant_array('attack_text_colour'),
+  attack_blocked_images: get_indexed_constant_array('attack_blocked_img'),
+  win_100_text: win_100_text,
+  data: {
+    phase: "phase2",
+    block_type: "planet_ship",
+  },
+  on_start: function(trial) {
+    trial.data.points = points;
+    trial.data.block_number = block_number;
+    trial.data.trial_number = trial_number;
+  },
+  on_finish: function(data) {
+    points = data.points_total;
+    trial_number = data.trial_number;
+    trial_number++;
+    // script for continuous response block
+    if (continuousResp) {
+      jsPsych.endCurrentTimeline();
+      block_number = data.block_number;
+      block_number++;
+      console.log("Block " + block_number);
+    } else {
+      if (trial_number >= nTrialspBlk) {
+        trial_number = 0;
+        block_number = data.block_number;
+        block_number++;
+        console.log("Block " + block_number);
+      }
+    }
+  },
+};</code></pre>
           </div>
           
-          <h3>Final Data Consolidation</h3>
+          <h3>Docker Deployment Configuration</h3>
           <div class="code-block">
-            <pre><code class="language-powerquery">
-// Final Data Integration - Joining CAUL, ERA, and SCIMAGOJR data
-let
-    // First join (left join ERA to CAUL data)
-    Source = Table.NestedJoin(CAUL, {"ISSN"}, ERA, {"ISSN"}, "ERA", JoinKind.LeftOuter),
+            <pre><code class="language-yaml">
+version: "3.8"
 
-    // Second join (left join SCIMAGOJR to CAUL data)
-    #"Merged Queries" = Table.NestedJoin(Source, {"ISSN"}, SCIMAGOJR, {"Issn"}, "SCIMAGOJR", JoinKind.LeftOuter),
+name: researchproject
+services:
+  proxy:
+    image: jc21/nginx-proxy-manager:2.10.4
+    restart: unless-stopped
+    ports:
+      - 80:80
+      - 443:443
+      - 81:81
+    depends_on:
+      jatos:
+        condition: service_healthy
+    volumes:
+      - ./data:/data
+      - ./letsencrypt:/etc/letsecrypt
 
-    // expand the merged data
-    #"Expanded ERA" = Table.ExpandTableColumn(#"Merged Queries", "ERA", {"FoR Code/Name"}, {"FoR Code/Name"}),
-    #"Expanded SCIMAGOJR" = Table.ExpandTableColumn(#"Expanded ERA", "SCIMAGOJR", {"SJR", "SJR Best Quartile", "H index", "Categories", "Areas"}, {"SJR", "SJR Best Quartile", "H index", "Categories", "Areas"}),
+  jatos:
+    image: jatos/jatos:3.9.3
+    restart: unless-stopped
+    ports:
+      - 9000:9000
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/ping"]
+      interval: 2s
+      timeout: 2s
+      retries: 1000
+      start_period: 10s
+    volumes:
+      - ./jatos-logs:/opt/jatos/logs
+      - ./jatos-data:/opt/jatos_data
+      - ./jatos.conf:/opt/jatos/conf/jatos.conf:ro
 
-    // Sort the journals by lexicographical order
-    #"Sorted Rows" = Table.Sort(#"Expanded SCIMAGOJR",{{"Journal Name", Order.Ascending}}),
-
-    // Groups the data by the journal name
-    #"Grouped Rows" = Table.Group(#"Sorted Rows", {"Journal Name"}, {{"ISSN", each Text.Combine([ISSN], "; "), type nullable text}, {"Included in R&P agreement", each List.Max([#"Included in R&P agreement"]), type nullable text}, {"Notes", each List.Max([Notes]), type nullable text}, {"Publisher Name", each List.Max([Publisher Name]), type nullable text}, {"Journal Type", each List.Max([Journal Type]), type nullable text}, {"FoR Code/Name", each List.Max([#"FoR Code/Name"]), type nullable text}, {"SJR Best Quartile", each List.Max([SJR Best Quartile]), type nullable text}, {"SJR", each List.Max([SJR]), type nullable number}, {"H index", each List.Max([H index]), type nullable number}, {"SJR Categories", each List.Max([Categories]), type nullable text}, {"SJR Areas", each List.Max([Areas]), type nullable text}})
-in
-    #"Grouped Rows"
-            </code></pre>
-          </div>
-          
-          <h3>Automated Export Generation</h3>
-          <div class="code-block">
-            <pre><code class="language-vba">
-' VBA code to generate the final document
-Sub GenerateDocument()
-'
-' Generates a copy of the refreshed data to the current directory
-'
-    Utils.RefreshIndicator ("B2")
-    Utils.RefreshConnections
-    Utils.RefreshIndicator ("B2")
-    ThisWorkbook.Save ' Save the current file before creating a new one
-    Utils.DeleteQueries
-    Utils.DeleteSheet ("Control Panel")
-    Utils.SaveCopy
-End Sub
-
-Sub SaveCopy()
-'
-' Saves the workbook in the current directory with a new name
-'
-    Application.DisplayAlerts = False ' disable alerts to prevent the user needing to click okay to saving a non-macro file
-    
-    fname = Format(Date, "yyyy-mm-dd") & " Read and Publish Journal Tool - UNE.xlsx" ' A string containing the desired filename with optimal date format for sorting
-    ActiveWorkbook.SaveAs ThisWorkbook.Path & "\" & fname, xlWorkbookDefault
-    
-    Application.DisplayAlerts = True
-End Sub
-            </code></pre>
+  filebrowser:
+    image: filebrowser/filebrowser:v2.31.1
+    restart: unless-stopped
+    ports:
+      - 8080:8080
+    depends_on:
+      jatos:
+        condition: service_healthy
+    volumes:
+      - ./jatos-data/study_assets_root:/srv
+      - ./filebrowser/database.db:/database.db
+      - ./filebrowser/.filebrowser.json:/.filebrowser.json
+    environment:
+      - PUID=1000
+      - GUID=1000</code></pre>
           </div>
         </div>
 
         <!-- Demo Section -->
-        <div id="demo" class="project-section" style="background-color: #fff; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); padding: 25px; margin-bottom: 25px;">
+        <div id="demo" class="project-section">
           <h2>Demo</h2>
           <p>
-            The Read and Publish Journal Tool helps UNE researchers easily determine if a journal is covered by an existing agreement:
+            The Project Planets experiment follows a structured flow designed to measure how people learn from experience and adjust their behavior:
           </p>
           
           <div class="video-container">
-            <video controls poster="../assets/img/database-video-poster.jpg">
-              <source src="../assets/videos/une-database-demo.mp4" type="video/mp4">
+            <video controls poster="../assets/img/jspsych-video-poster.jpg">
+              <source src="../assets/videos/jspsych-demo.mp4" type="video/mp4">
               Your browser doesn't support HTML5 video.
             </video>
           </div>
           
-          <h3>System Workflow</h3>
+          <h3>Experiment Flow</h3>
           <ol>
-            <li>Users download the tool from the UNE website</li>
-            <li>They open the Excel file and check the "Read me tips" tab first</li>
-            <li>They use the search or filter functionality to find specific journals</li>
-            <li>The tool displays eligibility status for various publishing agreements</li>
-            <li>Researchers can make informed decisions about where to publish</li>
-          </ol>
-          
-          <h3>Maintenance Workflow</h3>
-          <ol>
-            <li>UNE staff place updated data files in the appropriate folders</li>
-            <li>They open the Database tool and click "Generate New Document"</li>
-            <li>The system automatically processes all data and creates a new Excel file</li>
-            <li>The new file is uploaded to the UNE website for researchers to access</li>
-            <li>The entire process takes about 2 hours, compared to the previous 40-hour manual workflow</li>
+            <li><strong>Phase 1:</strong> Participants interact with planets to earn rewards, learning the baseline reward probabilities for each planet</li>
+            <li><strong>Assessment:</strong> Participants complete valence and inference checks to measure their current understanding</li>
+            <li><strong>Phase 2:</strong> Ships are introduced that can attack and reduce points, creating a risk-reward tradeoff</li>
+            <li><strong>Assessment:</strong> Further valence and inference checks to measure updated understanding</li>
+            <li><strong>Phase 3:</strong> Participants are explicitly told the contingencies between planets and ships</li>
+            <li><strong>Final Phase:</strong> Behavior is measured to see how explicit knowledge affects decision-making</li>
           </ol>
         </div>
 
         <!-- Outcomes Section -->
-        <div id="outcomes" class="project-section" style="background-color: #fff; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); padding: 25px; margin-bottom: 25px;">
+        <div id="outcomes" class="project-section">
           <h2>Outcomes</h2>
           
-          <h3>Key Achievements</h3>
+          <h3>Technical Achievements</h3>
           <ul>
-            <li>Successfully implemented on the official UNE website for campus-wide use</li>
-            <li>Consolidated over 30,000 journal entries from multiple publishers</li>
-            <li>Reduced data update process from days to minutes</li>
-            <li>Streamlined journal management workload from 40 hours down to just 2 hours</li>
-            <li>Reduced publication research time by 80% for researchers</li>
-            <li>Eliminated manual cross-referencing errors</li>
-            <li>Created a maintainable solution with comprehensive documentation</li>
-            <li>Provided researchers with clear guidance on eligible publishing options</li>
+            <li>Successfully deployed as a scalable, containerized application usable by researchers worldwide</li>
+            <li>Created reusable components that have been adopted in other psychological research projects</li>
+            <li>Developed comprehensive documentation enabling other researchers to modify and extend the platform</li>
+            <li>Built a system capable of running concurrent experiments with different parameters</li>
+            <li>Implemented secure data collection and storage solutions compliant with research ethics requirements</li>
           </ul>
           
-          <h3>Value Delivered</h3>
+          <h3>Research Impact</h3>
           <p>
-            This tool has transformed how UNE researchers approach journal selection and publishing decisions. It has helped scholars maximize institutional resources by identifying opportunities to publish in open access journals at no additional cost through the university's existing agreements.
+            Project Planets has been used to study how people learn from experience and make decisions under risk. The platform has enabled researchers to systematically investigate:
           </p>
-          <p>
-            The automation has freed up significant staff time that was previously spent manually updating and cross-referencing journal lists, allowing library staff to focus on providing direct support to researchers. The one-click solution for processing scientific journal data eliminated the need for manual handling and formatting of data being imported from scientific journal aggregation services.
-          </p>
+          <ul>
+            <li>How experience shapes risk perception and decision-making</li>
+            <li>The relationship between explicit knowledge and behavior</li>
+            <li>Individual differences in learning patterns and risk tolerance</li>
+            <li>The effects of different reward schedules on behavior</li>
+          </ul>
+          
+          <h3>Skills Demonstrated</h3>
+          <ul>
+            <li>Advanced JavaScript development</li>
+            <li>Custom plugin development for jsPsych</li>
+            <li>Docker containerization and deployment</li>
+            <li>UI/UX design for research applications</li>
+            <li>Data collection and management systems</li>
+            <li>Secure web application development</li>
+            <li>Technical documentation for diverse audiences</li>
+          </ul>
         </div>
 
         <!-- Project Navigation -->
         <div class="project-navigation">
-          <a href="discord-community.html">&larr; Previous: Discord Community</a>
-          <a href="unsw-jspsych.html">Next: UNSW jsPsych &rarr;</a>
+          <a href="une-database.html">View UNE Database Project &rarr;</a>
+          <a href="../index.html#project-highlights">&larr; Back to All Projects</a>
         </div>
       </div>
     </section>
@@ -301,7 +318,7 @@ End Sub
       <nav class="nav">
         <a href="../index.html">Home</a>
         <a href="../index.html#education">Education</a>
-        <a href="../projects.html">Projects</a>
+        <a href="../index.html#skills">Skills</a>
         <a href="../index.html#contact">Contact</a>
       </nav>
       
