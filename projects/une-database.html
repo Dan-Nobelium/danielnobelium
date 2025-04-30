@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>UNSW jsPsych Experiments - Dan Noble</title>
+    <title>UNE Read and Publish Journal Tool - Dan Noble</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../assets/stylesheets/main.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,300,400">
@@ -17,26 +17,27 @@
         <a href="../index.html">Dan<br> Noble</a>
       </h1>
 
-      <nav class="nav primary-nav" style="text-align: center; display: block; margin: 25px auto 0; float: none; width: 100%;">
-        <a href="../index.html#home" style="margin: 0 15px;">Home</a>
-        <a href="../index.html#education" style="margin: 0 15px;">Education</a>
-        <a href="../index.html#skills" style="margin: 0 15px;">Skills</a>
-        <a href="../index.html#contact" style="margin: 0 15px;">Contact</a>
+      <nav class="nav primary-nav">
+        <a href="../index.html#home">Home</a>
+        <a href="../index.html#education">Education</a>
+        <a href="../index.html#skills">Skills</a>
+        <a href="../index.html#contact">Contact</a>
       </nav>
     </header>
 
     <!-- Hero Banner -->
     <div class="project-hero">
-      <img src="../assets/img/jspsych-preview.jpg" alt="UNSW jsPsych Experiments">
+      <img src="../assets/img/database-preview.jpg" alt="UNE Database Tool">
       <div class="project-hero-overlay">
-        <h1>Behavioral Neuroscience Platform</h1>
+        <h1>UNE Read and Publish Journal Tool</h1>
         <div class="tech-stack">
-          <span class="tech-badge">jsPsych</span>
-          <span class="tech-badge">JavaScript</span>
-          <span class="tech-badge">Behavioral Research</span>
-          <span class="tech-badge">Docker</span>
+          <span class="tech-badge">PowerQuery</span>
+          <span class="tech-badge">Excel</span>
+          <span class="tech-badge">M Language</span>
+          <span class="tech-badge">Data Modeling</span>
+          <span class="tech-badge">Process Automation</span>
         </div>
-        <a href="https://github.com/Dan-Nobelium/Project_Planets" class="github-link" target="_blank">View on GitHub</a>
+        <a href="https://github.com/Dan-Nobelium/Read-And-Publish-Tool" class="github-link" target="_blank">View on GitHub</a>
       </div>
     </div>
 
@@ -47,7 +48,7 @@
         <div class="breadcrumbs">
           <a href="../index.html">Home</a> > 
           <a href="../index.html#project-highlights">Projects</a> > 
-          Behavioral Neuroscience Platform
+          UNE Read and Publish Journal Tool
         </div>
 
         <!-- Project Navigation -->
@@ -55,7 +56,6 @@
           <a href="#overview">Overview</a>
           <a href="#challenge">Challenge</a>
           <a href="#approach">Approach</a>
-          <a href="#code">Code Samples</a>
           <a href="#demo">Demo</a>
           <a href="#outcomes">Outcomes</a>
         </nav>
@@ -64,13 +64,10 @@
         <div id="overview" class="project-section">
           <h2>Overview</h2>
           <p>
-            Project Planets is a sophisticated JavaScript-based web application designed for conducting research on decision-making, risk assessment, and learning patterns. It presents an interactive space-themed environment where participants engage with different planets to earn rewards while managing the risk of pirate attacks.
+            Developed a comprehensive Excel-based solution for the University of New England (UNE) to help researchers identify eligible journals under various Read and Publish agreements. This tool consolidates data from multiple sources and provides an easy-to-use interface for researchers to determine which publishing agreements apply to specific journals.
           </p>
           <p>
-            Built using the jsPsych framework and deployed with Docker, the application provides a fully configurable platform for psychological research with detailed data collection capabilities. The experiment guides participants through multiple phases with varying reward-punishment contingencies, systematically revealing how people adapt their behavior based on experience.
-          </p>
-          <p>
-            This project showcases my abilities in both frontend development and research technology, combining clean, maintainable code with scientifically rigorous experimental design.
+            The final solution is used on the official UNE website, where researchers can download the tool to check journal eligibility for their publishing needs. It transforms a complex data management challenge into an accessible, user-friendly resource.
           </p>
         </div>
 
@@ -78,16 +75,14 @@
         <div id="challenge" class="project-section">
           <h2>Challenge</h2>
           <p>
-            Developing a behavioral experiment platform presented several unique challenges:
+            UNE faced significant challenges in helping researchers navigate publishing options:
           </p>
           <ul>
-            <li>Creating a complex interactive environment that maintains scientific control while being engaging for participants</li>
-            <li>Implementing precise timing mechanisms for stimulus presentation and response measurement</li>
-            <li>Designing a system to handle probabilistic rewards and outcomes with carefully calibrated parameters</li>
-            <li>Developing custom plugins to extend the core jsPsych functionality for specialized experiment requirements</li>
-            <li>Building a secure, scalable deployment solution that can handle concurrent participants and protect research data</li>
-            <li>Ensuring consistent behavior across different browsers and devices</li>
-            <li>Creating a flexible architecture that allows researchers to modify parameters without needing to understand the codebase</li>
+            <li>Data about eligible journals was scattered across multiple sources with no unified system</li>
+            <li>Information from the Council of Australian University Librarians (CAUL), Excellence in Research for Australia (ERA), and Scimago Journal Rankings needed integration</li>
+            <li>Regular updates were required as publisher agreements changed and new journals were added</li>
+            <li>Researchers needed simple access to determine journal eligibility for publishing agreements</li>
+            <li>The solution needed to be maintainable by UNE library staff without specialized technical knowledge</li>
           </ul>
         </div>
 
@@ -95,172 +90,55 @@
         <div id="approach" class="project-section">
           <h2>Approach</h2>
           <p>
-            My approach combined software engineering best practices with an understanding of behavioral research requirements:
+            I implemented a comprehensive solution using PowerQuery and Excel:
           </p>
-          <ol>
-            <li>Built a modular architecture using JavaScript and jsPsych as the foundation</li>
-            <li>Developed custom jsPsych plugins for the specialized functionality required by the experiment, including:
+          <ul>
+            <li>Created an automated data processing system that pulls from multiple data sources:
               <ul>
-                <li>planet-response.js: A core plugin handling the main interactions with planets and ships</li>
-                <li>jspsych-inference-check.js: A plugin for collecting participants' inferences about relationships between stimuli</li>
-                <li>jspsych-valence-check.js: A plugin for collecting emotional responses to game elements</li>
-                <li>jspsych-html-slider-triangle.js: A custom plugin for ternary choice data collection</li>
+                <li>CAUL Read & Publish Agreements (.xlsx format)</li>
+                <li>ERA Submission Journal List (.xlsx format)</li>
+                <li>Scimago Journal Rankings (.csv format)</li>
               </ul>
             </li>
-            <li>Implemented a comprehensive Docker-based deployment system allowing for:
-              <ul>
-                <li>Easy installation on any cloud provider</li>
-                <li>Secure SSL/TLS encryption for all participant data</li>
-                <li>Integrated data storage and experiment management through JATOS</li>
-                <li>Simple file management through a dedicated file browser interface</li>
-              </ul>
-            </li>
-            <li>Created thorough documentation for both researchers and developers to ensure sustainability of the platform</li>
-            <li>Designed a flexible configuration system allowing researchers to modify experimental parameters without code changes</li>
-          </ol>
-        </div>
-
-        <!-- Code Samples Section -->
-        <div id="code" class="project-section">
-          <h2>Code Samples</h2>
-          
-          <h3>Custom Planet Response Plugin</h3>
-          <div class="code-block">
-            <pre><code class="language-javascript">
-// Example from the custom planet-response-command.js plugin
-let planet_ship = {
-  type: "planet-response-command",
-  show_ship: true,
-  prompt: planet_labels,
-  stimulus: planet_list,
-  stimulus_select: stim_selector_highlight,
-  ship_stimulus: ship_list,
-  reset_planet_wait: reset_planet_wait_const,
-  shield_charging_time: shield_charging_time_const,
-  ship_attack_time: ship_attack_time_const,
-  ship_attack_effect: get_indexed_constant_array('ship_attack_effect'),
-  show_whether_shield_blocked_attack_or_bonus:
-    show_whether_shield_blocked_attack_or_bonus,
-  block_duration: block_duration,
-  probability_trade: get_indexed_constant_array('probability_trade'),
-  probability_ship: get_indexed_constant_array('probability_ship'),
-  probability_shield: get_indexed_constant_array('probability_shield'),
-  trade_outcomes: get_indexed_constant_array('trade_outcome_set'),
-  ship_outcomes: get_indexed_constant_array('ship_emergence_set'),
-  shield_outcomes: get_indexed_constant_array('shield_available_set'),
-  attack_images: get_indexed_constant_array('attack_img'),
-  image_paths_to_preload: get_indexed_constant_array('attack_img_path'),
-  attack_text_colours: get_indexed_constant_array('attack_text_colour'),
-  attack_blocked_images: get_indexed_constant_array('attack_blocked_img'),
-  win_100_text: win_100_text,
-  data: {
-    phase: "phase2",
-    block_type: "planet_ship",
-  },
-  on_start: function(trial) {
-    trial.data.points = points;
-    trial.data.block_number = block_number;
-    trial.data.trial_number = trial_number;
-  },
-  on_finish: function(data) {
-    points = data.points_total;
-    trial_number = data.trial_number;
-    trial_number++;
-    // script for continuous response block
-    if (continuousResp) {
-      jsPsych.endCurrentTimeline();
-      block_number = data.block_number;
-      block_number++;
-      console.log("Block " + block_number);
-    } else {
-      if (trial_number >= nTrialspBlk) {
-        trial_number = 0;
-        block_number = data.block_number;
-        block_number++;
-        console.log("Block " + block_number);
-      }
-    }
-  },
-};</code></pre>
-          </div>
-          
-          <h3>Docker Deployment Configuration</h3>
-          <div class="code-block">
-            <pre><code class="language-yaml">
-version: "3.8"
-
-name: researchproject
-services:
-  proxy:
-    image: jc21/nginx-proxy-manager:2.10.4
-    restart: unless-stopped
-    ports:
-      - 80:80
-      - 443:443
-      - 81:81
-    depends_on:
-      jatos:
-        condition: service_healthy
-    volumes:
-      - ./data:/data
-      - ./letsencrypt:/etc/letsecrypt
-
-  jatos:
-    image: jatos/jatos:3.9.3
-    restart: unless-stopped
-    ports:
-      - 9000:9000
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:9000/ping"]
-      interval: 2s
-      timeout: 2s
-      retries: 1000
-      start_period: 10s
-    volumes:
-      - ./jatos-logs:/opt/jatos/logs
-      - ./jatos-data:/opt/jatos_data
-      - ./jatos.conf:/opt/jatos/conf/jatos.conf:ro
-
-  filebrowser:
-    image: filebrowser/filebrowser:v2.31.1
-    restart: unless-stopped
-    ports:
-      - 8080:8080
-    depends_on:
-      jatos:
-        condition: service_healthy
-    volumes:
-      - ./jatos-data/study_assets_root:/srv
-      - ./filebrowser/database.db:/database.db
-      - ./filebrowser/.filebrowser.json:/.filebrowser.json
-    environment:
-      - PUID=1000
-      - GUID=1000</code></pre>
-          </div>
+            <li>Developed a file monitoring system to automatically detect the latest data files</li>
+            <li>Implemented robust data cleaning and transformation processes to handle inconsistencies</li>
+            <li>Created a consolidated database with proper relationships between data sources</li>
+            <li>Built an automated document generation system that creates a clean, user-friendly Excel file</li>
+            <li>Designed detailed documentation for UNE staff to maintain the system</li>
+          </ul>
         </div>
 
         <!-- Demo Section -->
         <div id="demo" class="project-section">
           <h2>Demo</h2>
           <p>
-            The Project Planets experiment follows a structured flow designed to measure how people learn from experience and adjust their behavior:
+            The Read and Publish Journal Tool helps UNE researchers easily determine if a journal is covered by an existing agreement:
           </p>
           
+          <!-- Video container - uncomment when video is ready
           <div class="video-container">
-            <video controls poster="../assets/img/jspsych-video-poster.jpg">
-              <source src="../assets/videos/jspsych-demo.mp4" type="video/mp4">
+            <video controls poster="../assets/img/database-video-poster.jpg">
+              <source src="../assets/videos/une-database-demo.mp4" type="video/mp4">
               Your browser doesn't support HTML5 video.
             </video>
           </div>
+          -->
           
-          <h3>Experiment Flow</h3>
+          <h3>System Workflow</h3>
           <ol>
-            <li><strong>Phase 1:</strong> Participants interact with planets to earn rewards, learning the baseline reward probabilities for each planet</li>
-            <li><strong>Assessment:</strong> Participants complete valence and inference checks to measure their current understanding</li>
-            <li><strong>Phase 2:</strong> Ships are introduced that can attack and reduce points, creating a risk-reward tradeoff</li>
-            <li><strong>Assessment:</strong> Further valence and inference checks to measure updated understanding</li>
-            <li><strong>Phase 3:</strong> Participants are explicitly told the contingencies between planets and ships</li>
-            <li><strong>Final Phase:</strong> Behavior is measured to see how explicit knowledge affects decision-making</li>
+            <li>Users download the tool from the UNE website</li>
+            <li>They open the Excel file and check the "Read me tips" tab first</li>
+            <li>They use the search or filter functionality to find specific journals</li>
+            <li>The tool displays eligibility status for various publishing agreements</li>
+            <li>Researchers can make informed decisions about where to publish</li>
+          </ol>
+          
+          <h3>Maintenance Workflow</h3>
+          <ol>
+            <li>UNE staff place updated data files in the appropriate folders</li>
+            <li>They open the Database tool and click "Generate New Document"</li>
+            <li>The system automatically processes all data and creates a new Excel file</li>
+            <li>The new file is uploaded to the UNE website for researchers to access</li>
           </ol>
         </div>
 
@@ -268,41 +146,39 @@ services:
         <div id="outcomes" class="project-section">
           <h2>Outcomes</h2>
           
-          <h3>Technical Achievements</h3>
+          <h3>Key Achievements</h3>
           <ul>
-            <li>Successfully deployed as a scalable, containerized application usable by researchers worldwide</li>
-            <li>Created reusable components that have been adopted in other psychological research projects</li>
-            <li>Developed comprehensive documentation enabling other researchers to modify and extend the platform</li>
-            <li>Built a system capable of running concurrent experiments with different parameters</li>
-            <li>Implemented secure data collection and storage solutions compliant with research ethics requirements</li>
+            <li>Successfully implemented on the official UNE website for campus-wide use</li>
+            <li>Consolidated over 30,000 journal entries from multiple publishers</li>
+            <li>Reduced data update process from days to minutes</li>
+            <li>Eliminated manual cross-referencing errors</li>
+            <li>Created a maintainable solution with comprehensive documentation</li>
+            <li>Provided researchers with clear guidance on eligible publishing options</li>
           </ul>
           
-          <h3>Research Impact</h3>
+          <h3>Value Delivered</h3>
           <p>
-            Project Planets has been used to study how people learn from experience and make decisions under risk. The platform has enabled researchers to systematically investigate:
+            This tool has transformed how UNE researchers approach journal selection and publishing decisions. It has helped scholars maximize institutional resources by identifying opportunities to publish in open access journals at no additional cost through the university's existing agreements.
           </p>
-          <ul>
-            <li>How experience shapes risk perception and decision-making</li>
-            <li>The relationship between explicit knowledge and behavior</li>
-            <li>Individual differences in learning patterns and risk tolerance</li>
-            <li>The effects of different reward schedules on behavior</li>
-          </ul>
+          <p>
+            The automation has also freed up significant staff time that was previously spent manually updating and cross-referencing journal lists, allowing library staff to focus on providing direct support to researchers.
+          </p>
           
           <h3>Skills Demonstrated</h3>
           <ul>
-            <li>Advanced JavaScript development</li>
-            <li>Custom plugin development for jsPsych</li>
-            <li>Docker containerization and deployment</li>
-            <li>UI/UX design for research applications</li>
-            <li>Data collection and management systems</li>
-            <li>Secure web application development</li>
-            <li>Technical documentation for diverse audiences</li>
+            <li>Data integration and transformation</li>
+            <li>Excel/PowerQuery advanced development</li>
+            <li>Process automation</li>
+            <li>User experience design</li>
+            <li>Technical documentation</li>
+            <li>Business requirements analysis</li>
+            <li>Academic publishing domain knowledge</li>
           </ul>
         </div>
 
         <!-- Project Navigation -->
         <div class="project-navigation">
-          <a href="une-database.html">View UNE Database Project &rarr;</a>
+          <a href="unsw-jspsych.html">View UNSW jsPsych Project &rarr;</a>
           <a href="../index.html#project-highlights">&larr; Back to All Projects</a>
         </div>
       </div>
