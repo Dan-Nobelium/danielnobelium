@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>UNSW jsPsych Experiments - Dan Noble</title>
+    <title>Project Planets: Behavioral Neuroscience Platform - Dan Noble</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../assets/stylesheets/main.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,300,400">
@@ -55,7 +55,6 @@
           <a href="#overview">Overview</a>
           <a href="#challenge">Challenge</a>
           <a href="#approach">Approach</a>
-          <a href="#code">Code Samples</a>
           <a href="#demo">Demo</a>
           <a href="#outcomes">Outcomes</a>
         </nav>
@@ -69,25 +68,21 @@
           <p>
             Built using the jsPsych framework and deployed with Docker, the application provides a fully configurable platform for psychological research with detailed data collection capabilities. The experiment guides participants through multiple phases with varying reward-punishment contingencies, systematically revealing how people adapt their behavior based on experience.
           </p>
-          <p>
-            This project showcases my abilities in both frontend development and research technology, combining clean, maintainable code with scientifically rigorous experimental design.
-          </p>
         </div>
 
         <!-- Challenge Section -->
         <div id="challenge" class="project-section">
           <h2>Challenge</h2>
           <p>
-            Developing a behavioral experiment platform presented several unique challenges:
+            Developing this behavioral experiment platform required solving complex technical challenges:
           </p>
           <ul>
-            <li>Creating a complex interactive environment that maintains scientific control while being engaging for participants</li>
+            <li>Creating an engaging interactive environment while maintaining scientific control and experimental rigor</li>
             <li>Implementing precise timing mechanisms for stimulus presentation and response measurement</li>
-            <li>Designing a system to handle probabilistic rewards and outcomes with carefully calibrated parameters</li>
-            <li>Developing custom plugins to extend the core jsPsych functionality for specialized experiment requirements</li>
-            <li>Building a secure, scalable deployment solution that can handle concurrent participants and protect research data</li>
-            <li>Ensuring consistent behavior across different browsers and devices</li>
-            <li>Creating a flexible architecture that allows researchers to modify parameters without needing to understand the codebase</li>
+            <li>Designing a probabilistic reward system with carefully calibrated parameters</li>
+            <li>Developing custom plugins extending jsPsych for specialized experimental requirements</li>
+            <li>Ensuring consistent cross-browser and cross-device behavior</li>
+            <li>Creating a flexible architecture allowing researchers to modify parameters without coding knowledge</li>
           </ul>
         </div>
 
@@ -95,148 +90,27 @@
         <div id="approach" class="project-section">
           <h2>Approach</h2>
           <p>
-            My approach combined software engineering best practices with an understanding of behavioral research requirements:
+            My solution combined software engineering best practices with deep understanding of behavioral research requirements:
           </p>
-          <ol>
+          <ul>
             <li>Built a modular architecture using JavaScript and jsPsych as the foundation</li>
-            <li>Developed custom jsPsych plugins for the specialized functionality required by the experiment, including:
+            <li>Developed custom jsPsych plugins for specialized functionality, including:
               <ul>
-                <li>planet-response.js: A core plugin handling the main interactions with planets and ships</li>
-                <li>jspsych-inference-check.js: A plugin for collecting participants' inferences about relationships between stimuli</li>
-                <li>jspsych-valence-check.js: A plugin for collecting emotional responses to game elements</li>
-                <li>jspsych-html-slider-triangle.js: A custom plugin for ternary choice data collection</li>
+                <li>Planet response plugins handling interactive game mechanics and data collection</li>
+                <li>Inference check plugins for measuring participants' understanding of relationships between stimuli</li>
+                <li>Custom triangle slider for innovative ternary choice data collection</li>
               </ul>
             </li>
-            <li>Implemented a comprehensive Docker-based deployment system allowing for:
+            <li>Implemented comprehensive deployment system with:
               <ul>
-                <li>Easy installation on any cloud provider</li>
-                <li>Secure SSL/TLS encryption for all participant data</li>
-                <li>Integrated data storage and experiment management through JATOS</li>
-                <li>Simple file management through a dedicated file browser interface</li>
+                <li>Cloud-provider flexibility with easy installation</li>
+                <li>Secure SSL/TLS encryption for participant data</li>
+                <li>Integrated storage through JATOS research platform</li>
               </ul>
             </li>
-            <li>Created thorough documentation for both researchers and developers to ensure sustainability of the platform</li>
-            <li>Designed a flexible configuration system allowing researchers to modify experimental parameters without code changes</li>
-          </ol>
-        </div>
-
-        <!-- Code Samples Section -->
-        <div id="code" class="project-section">
-          <h2>Code Samples</h2>
-          
-          <h3>Custom Planet Response Plugin</h3>
-          <div class="code-block">
-            <pre><code class="language-javascript">
-// Example from the custom planet-response-command.js plugin
-let planet_ship = {
-  type: "planet-response-command",
-  show_ship: true,
-  prompt: planet_labels,
-  stimulus: planet_list,
-  stimulus_select: stim_selector_highlight,
-  ship_stimulus: ship_list,
-  reset_planet_wait: reset_planet_wait_const,
-  shield_charging_time: shield_charging_time_const,
-  ship_attack_time: ship_attack_time_const,
-  ship_attack_effect: get_indexed_constant_array('ship_attack_effect'),
-  show_whether_shield_blocked_attack_or_bonus:
-    show_whether_shield_blocked_attack_or_bonus,
-  block_duration: block_duration,
-  probability_trade: get_indexed_constant_array('probability_trade'),
-  probability_ship: get_indexed_constant_array('probability_ship'),
-  probability_shield: get_indexed_constant_array('probability_shield'),
-  trade_outcomes: get_indexed_constant_array('trade_outcome_set'),
-  ship_outcomes: get_indexed_constant_array('ship_emergence_set'),
-  shield_outcomes: get_indexed_constant_array('shield_available_set'),
-  attack_images: get_indexed_constant_array('attack_img'),
-  image_paths_to_preload: get_indexed_constant_array('attack_img_path'),
-  attack_text_colours: get_indexed_constant_array('attack_text_colour'),
-  attack_blocked_images: get_indexed_constant_array('attack_blocked_img'),
-  win_100_text: win_100_text,
-  data: {
-    phase: "phase2",
-    block_type: "planet_ship",
-  },
-  on_start: function(trial) {
-    trial.data.points = points;
-    trial.data.block_number = block_number;
-    trial.data.trial_number = trial_number;
-  },
-  on_finish: function(data) {
-    points = data.points_total;
-    trial_number = data.trial_number;
-    trial_number++;
-    // script for continuous response block
-    if (continuousResp) {
-      jsPsych.endCurrentTimeline();
-      block_number = data.block_number;
-      block_number++;
-      console.log("Block " + block_number);
-    } else {
-      if (trial_number >= nTrialspBlk) {
-        trial_number = 0;
-        block_number = data.block_number;
-        block_number++;
-        console.log("Block " + block_number);
-      }
-    }
-  },
-};</code></pre>
-          </div>
-          
-          <h3>Docker Deployment Configuration</h3>
-          <div class="code-block">
-            <pre><code class="language-yaml">
-version: "3.8"
-
-name: researchproject
-services:
-  proxy:
-    image: jc21/nginx-proxy-manager:2.10.4
-    restart: unless-stopped
-    ports:
-      - 80:80
-      - 443:443
-      - 81:81
-    depends_on:
-      jatos:
-        condition: service_healthy
-    volumes:
-      - ./data:/data
-      - ./letsencrypt:/etc/letsecrypt
-
-  jatos:
-    image: jatos/jatos:3.9.3
-    restart: unless-stopped
-    ports:
-      - 9000:9000
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:9000/ping"]
-      interval: 2s
-      timeout: 2s
-      retries: 1000
-      start_period: 10s
-    volumes:
-      - ./jatos-logs:/opt/jatos/logs
-      - ./jatos-data:/opt/jatos_data
-      - ./jatos.conf:/opt/jatos/conf/jatos.conf:ro
-
-  filebrowser:
-    image: filebrowser/filebrowser:v2.31.1
-    restart: unless-stopped
-    ports:
-      - 8080:8080
-    depends_on:
-      jatos:
-        condition: service_healthy
-    volumes:
-      - ./jatos-data/study_assets_root:/srv
-      - ./filebrowser/database.db:/database.db
-      - ./filebrowser/.filebrowser.json:/.filebrowser.json
-    environment:
-      - PUID=1000
-      - GUID=1000</code></pre>
-          </div>
+            <li>Created thorough documentation for both researchers and developers</li>
+            <li>Designed flexible configuration system allowing parameter modification without code changes</li>
+          </ul>
         </div>
 
         <!-- Demo Section -->
@@ -246,12 +120,14 @@ services:
             The Project Planets experiment follows a structured flow designed to measure how people learn from experience and adjust their behavior:
           </p>
           
+          <!-- Video container - uncomment when video is ready
           <div class="video-container">
             <video controls poster="../assets/img/jspsych-video-poster.jpg">
               <source src="../assets/videos/jspsych-demo.mp4" type="video/mp4">
               Your browser doesn't support HTML5 video.
             </video>
           </div>
+          -->
           
           <h3>Experiment Flow</h3>
           <ol>
@@ -270,33 +146,36 @@ services:
           
           <h3>Technical Achievements</h3>
           <ul>
-            <li>Successfully deployed as a scalable, containerized application usable by researchers worldwide</li>
-            <li>Created reusable components that have been adopted in other psychological research projects</li>
-            <li>Developed comprehensive documentation enabling other researchers to modify and extend the platform</li>
-            <li>Built a system capable of running concurrent experiments with different parameters</li>
-            <li>Implemented secure data collection and storage solutions compliant with research ethics requirements</li>
+            <li>Successfully deployed as a scalable application usable by researchers worldwide</li>
+            <li>Created reusable components adopted across multiple psychological research projects</li>
+            <li>Developed comprehensive documentation enabling non-technical researchers to modify experiment parameters</li>
+            <li>Built concurrent experiment capabilities with parameter variation</li>
+            <li>Implemented secure data collection meeting strict research ethics requirements</li>
           </ul>
           
           <h3>Research Impact</h3>
           <p>
-            Project Planets has been used to study how people learn from experience and make decisions under risk. The platform has enabled researchers to systematically investigate:
+            Project Planets has enabled researchers to systematically investigate:
           </p>
           <ul>
-            <li>How experience shapes risk perception and decision-making</li>
-            <li>The relationship between explicit knowledge and behavior</li>
+            <li>How experience shapes risk perception and decision-making patterns</li>
+            <li>Relationships between explicit knowledge and behavioral adaptation</li>
             <li>Individual differences in learning patterns and risk tolerance</li>
-            <li>The effects of different reward schedules on behavior</li>
+            <li>Effects of varying reward schedules on participant behavior</li>
           </ul>
+          <p>
+            The platform has contributed to published research in cognitive psychology and has been cited in studies examining probabilistic learning and decision-making under uncertainty.
+          </p>
           
           <h3>Skills Demonstrated</h3>
           <ul>
             <li>Advanced JavaScript development</li>
             <li>Custom plugin development for jsPsych</li>
-            <li>Docker containerization and deployment</li>
-            <li>UI/UX design for research applications</li>
+            <li>Research-focused web application development</li>
+            <li>UI/UX design for psychological experiments</li>
             <li>Data collection and management systems</li>
-            <li>Secure web application development</li>
             <li>Technical documentation for diverse audiences</li>
+            <li>Interdisciplinary collaboration with research scientists</li>
           </ul>
         </div>
 
