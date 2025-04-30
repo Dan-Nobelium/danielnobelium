@@ -203,7 +203,7 @@ body {
     font-size: 1.1rem;
   }
 }
-  
+
 /* Featured projects section */
 .projects-section {
   background-color: #f9f9f9;
@@ -214,68 +214,119 @@ body {
   flex-direction: column;
   gap: 40px;
 }
-  
+
+/* Updated Project Cards with Fixed Image Display */
 .featured-project {
-  display: flex;
-  flex-direction: column;
   background-color: #fff;
   border-radius: 8px;
-  overflow: hidden;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  margin-bottom: 40px;
+  display: flex;
+  flex-direction: column;
 }
-  
-.project-image {
+
+.featured-project:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+}
+
+.project-thumbnail {
+  height: 220px;
   width: 100%;
-  height: 250px;
+  overflow: hidden;
+  position: relative;
+  background-color: #f5f5f5;
 }
-  
-.project-image img {
+
+.project-thumbnail img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
 }
-  
-.project-details {
-  padding: 20px;
+
+.project-content {
+  padding: 25px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
 }
-  
-.project-details h3 {
-  font-size: 1.5rem;
-  color: #333;
+
+.project-content h3 {
+  font-size: 24px;
+  margin-top: 0;
   margin-bottom: 5px;
+  color: #333;
 }
-  
+
 .project-subtitle {
-  font-size: 1rem;
+  font-size: 16px;
   color: #648880;
   margin-bottom: 15px;
   font-weight: 400;
 }
-  
+
 .project-description {
   margin-bottom: 20px;
   line-height: 1.6;
+  color: #555;
 }
-  
+
 .tech-stack {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
   margin-bottom: 20px;
 }
-  
+
 .tech-badge {
   background-color: #f0f5f4;
   color: #648880;
   padding: 5px 10px;
   border-radius: 20px;
-  font-size: 0.8rem;
+  font-size: 14px;
 }
-  
+
 .project-links {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+  margin-top: auto;
+}
+
+/* These classes replace the inline button styles */
+.btn-primary {
+  background-color: #648880;
+  color: white;
+  display: inline-block;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.btn-primary:hover {
+  background-color: #576e69;
+}
+
+.btn-outline {
+  border: 1px solid #648880;
+  color: #648880;
+  display: inline-block;
+  padding: 9px 19px;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  font-size: 14px;
+}
+
+.btn-outline:hover {
+  background-color: rgba(100, 136, 128, 0.1);
 }
 
 @media (min-width: 768px) {
@@ -287,28 +338,19 @@ body {
     flex-direction: row;
   }
   
-  .project-image {
-    flex: 1;
-    min-width: 40%;
+  .project-thumbnail {
+    width: 40%;
     height: auto;
   }
   
-  .project-details {
-    flex: 1.5;
-    padding: 30px;
+  .project-content {
+    width: 60%;
   }
-  
-  .tech-stack {
-    gap: 10px;
-  }
-  
-  .tech-badge {
-    padding: 5px 12px;
-    font-size: 0.9rem;
-  }
-  
-  .project-links {
-    gap: 15px;
+}
+
+@media (max-width: 767px) {
+  .project-thumbnail {
+    height: 180px;
   }
 }
 
@@ -456,6 +498,48 @@ body {
     font-size: 0.9rem;
   }
 }
+
+/* Employment cards styling */
+.employment-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.employment-card {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  padding: 20px;
+}
+
+.employment-details {
+  width: 100%;
+}
+
+.employment-period {
+  font-size: 0.9rem;
+  color: #648880;
+  margin-bottom: 15px;
+}
+
+.employment-description {
+  margin-bottom: 15px;
+  line-height: 1.6;
+}
+
+@media (min-width: 768px) {
+  .employment-card {
+    padding: 30px;
+  }
+  
+  .employment-period {
+    font-size: 1rem;
+  }
+}
   
 /* Skills section - NEW FORMATTING */
 .skills-section {
@@ -475,12 +559,11 @@ body {
 }
 
 .expertise-area {
-  padding-bottom: 20px;
-  border-bottom: 1px solid #e0e0e0;
-}
-
-.expertise-area:last-child {
-  border-bottom: none;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  padding: 25px;
+  margin-bottom: 25px;
 }
 
 .expertise-area h3 {
@@ -571,6 +654,7 @@ body {
   background-color: #f9f9f9;
   border-radius: 8px;
   transition: transform 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
 }
   
 .contact-item:hover {
